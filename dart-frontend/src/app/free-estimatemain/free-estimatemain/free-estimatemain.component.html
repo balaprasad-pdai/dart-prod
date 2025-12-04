@@ -1,0 +1,73 @@
+<app-header [activeLink]="'Free Estimate'"></app-header>
+
+<section class="page-section top_section_padding" style="margin-top: 20px">
+  <div class="container">
+    <span class="p_dots" style="padding-top: 100px"
+      ><img src="assets/images/dots.svg" alt=""
+    /></span>
+    <span
+      class="arrow_slider"
+      style="position: absolute; right: 80px; width: 100px; top: 150px"
+    ></span>
+    <div class="brand_text_wpr mb-5">
+      <h4>FREE ESTIMATE</h4>
+      <h2>
+        Send us some <br />
+        photos of damage and <br />
+        get estimated quote for the repairs.
+      </h2>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="card_free_estimate position-relative">
+            <a
+              href="javascript:void(0)"
+              class="position-absolute top-0 start-0 bottom-0 end-0"
+              (click)="util.navigateToUrl('free-estimate-vehicle-information')"
+            >
+            </a>
+            <div class="icon_col">
+              <span class="icon">
+                <span class="round"></span>
+                <img
+                  src="assets/images/services/2.png"
+                  class="img_icon"
+                  alt=""
+                />
+              </span>
+            </div>
+            <div class="text_col">
+              Denting <br />
+              and painting
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card_free_estimate bg_2 position-relative">
+            <a
+              class="position-absolute top-0 end-0 bottom-0 start-0"
+              href="tel:+919980077990"
+            >
+            </a>
+            <div class="icon_col">
+              <span class="icon">
+                <span class="round"></span>
+                <img src="assets/images/car/4.png" alt="" class="img_icon" />
+              </span>
+            </div>
+            <div class="text_col">
+              Talk to <br />
+              our Expert
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-why-choose-us></app-why-choose-us>
+<app-faq></app-faq>
+<app-footer-nav></app-footer-nav>

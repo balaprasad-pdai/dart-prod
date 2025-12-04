@@ -1,0 +1,29 @@
+h2{
+    padding: 0;
+    margin-bottom: 10px;
+}
+ol li{
+    list-style-type: upper-roman;
+    font-weight: 600;
+}
+ol li ul li{
+    list-style-type: none;
+    font-weight: 600;
+    position: relative;
+}
+ol li ul li p{
+    padding-left: 30px;
+}
+ol li ul li::before{
+    content: '❖';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+}
+p {
+    font-size: 14px;
+    margin-bottom: 5px;
+    padding: 5px;
+    text-align: justify;
+    font-weight: 400;
+}

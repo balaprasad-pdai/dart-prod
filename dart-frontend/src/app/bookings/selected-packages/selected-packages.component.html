@@ -1,0 +1,305 @@
+<!-- <div class="cart_main_wpr" *ngIf="fromInsurance">
+  <div class="cart_wpr">
+    <ng-container *ngFor="let package of insuranceList">
+      <div class="cart_row">
+        <div
+          class="remove_btn"
+          (click)="removeServiceFromCartList(package)"
+          *ngIf="!packageCloseBtn"
+        >
+          <i class="fa fa-close"></i>
+        </div>
+        <div class="col_left">
+          <div class="title">
+            {{ package?.title }}
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+  <div class="claim_info_wpr">
+    <div class="sel_input_wpr">
+      <div class="input_group_blk">
+        <label>Choose Insurace Provider</label>
+        <select class="sel_txt" [(ngModel)]="selecetdInsurance">
+          <option value="-1">Select Provider</option>
+          <ng-container
+            *ngFor="let insuranceProvider of insuranseProviderList"
+          >
+            <option [value]="insuranceProvider.id">
+              {{ insuranceProvider.name }}
+            </option>
+          </ng-container>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div
+      *ngIf="page === 'booking-detail'"
+      class="btn_action"
+      (click)="checkoutNew()"
+    >
+      Submit enquiry
+    </div>
+    <div
+    *ngIf="page === 'booking'"
+    class="btn_action"
+    (click)="navigateToUrl('/bookings/details')"
+  >
+    Proceed
+  </div>
+</div> -->
+<div class="cart_main_wpr">
+  <h2 class="card_title">Selected Packages</h2>
+
+  <div class="cart_wpr">
+    <ng-container *ngFor="let package of activeCartList?.orderMeta?.package">
+      <div class="cart_row">
+        <div
+          class="remove_btn"
+          (click)="removeServiceFromCartList(package)"
+          *ngIf="!packageCloseBtn"
+        >
+          <i class="fa fa-close"></i>
+        </div>
+        <div class="col_left">
+          <div class="title">
+            {{ package?.name }}
+          </div>
+          <div
+            class="desc_title"
+            *ngIf="package?.panelId && package?.typeOfWorkId"
+          >
+            {{ package?.carPanel?.part?.name }}
+          </div>
+          <div class="desc_title" *ngIf="package?.addons?.gradeList?.oilName">
+            Addon - {{ package?.addons?.gradeList?.oilName }}
+          </div>
+        </div>
+        <div class="col_right hide">
+          <div class="amount" *ngIf="package?.slashedPrice">
+            ₹{{
+              package?.addons?.slashedPrice
+                ? package?.slashedPrice + package?.addons?.slashedPrice
+                : package?.slashedPrice
+            }}
+          </div>
+          <div class="amount" *ngIf="!package?.slashedPrice">
+            ₹{{
+              package?.addons?.slashedPrice
+                ? package?.price + package?.addons?.slashedPrice
+                : package?.price
+            }}
+          </div>
+          <div
+            class="amount_offer_wpr"
+            *ngIf="!packageCloseBtn && package?.slashedPrice"
+          >
+            <span class="amount_offer">
+              ₹{{
+                package?.addons?.price
+                  ? package?.price + package?.addons?.price
+                  : package?.price
+              }} </span
+            ><span class="offer_per">{{
+              calculatePercentageBy2Numbers(
+                package?.price
+                  ? package?.price
+                  : 0 + package?.addons?.price
+                  ? package.addons.price
+                  : 0,
+                package?.slashedPrice
+                  ? package.slashedPrice
+                  : 0 + package?.addons?.slashedPrice
+                  ? package.addons.slashedPrice
+                  : 0
+              )
+            }}</span>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <h2 class="card_title hide">Payment Details</h2>
+
+  <!-- <div class="coupen_wpr">
+            <input
+              type="text"
+              name=""
+              class="coupen_txt"
+              placeholder="Enter Coupon Code"
+            />
+            <span class="apply_btn">Apply</span>
+          </div> -->
+  <div
+    *ngIf="orderParams && !packageCloseBtn"
+    class="preffered-payment-method hide"
+    [ngClass]="{ 'payment-error': paymentError }"
+  >
+    <span class="title_info">Preferred payment method</span>
+    <ng-container *ngFor="let paymentMethod of paymentMethodList">
+      <div
+        class="address_blk"
+        [ngClass]="{
+          active_address_blk:
+            orderParams?.orderMeta?.preferredPaymentMethod === paymentMethod
+        }"
+        (click)="paymentMethodChange(paymentMethod)"
+      >
+        <div class="sel_blk">
+          <input
+            type="radio"
+            [name]="paymentMethod"
+            [checked]="
+              orderParams?.orderMeta?.preferredPaymentMethod === paymentMethod
+            "
+          />
+        </div>
+        <div class="address_text">
+          <div class="title_name">{{ paymentMethod }}</div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="hide">
+    <div class="row_info">
+      <span class="title_info">Sub Total</span>
+      <span class="title_val">₹{{ activeCartList?.paymentTotal }}</span>
+    </div>
+    <div class="row_info">
+      <span class="title_info">GST (18%)</span>
+      <span class="title_val"
+        >₹{{ calculateGST(activeCartList?.paymentTotal) }}</span
+      >
+    </div>
+    <hr />
+    <div class="row_info head">
+      <span class="title_info">Total Price</span>
+      <span class="title_val"
+        >₹{{ calculateTotal(activeCartList?.paymentTotal) }}</span
+      >
+    </div>
+  </div>  
+  <div class="claim_info_wpr" *ngIf="fromInsurance">
+    <div class="f_wpr" *ngIf="router.url.indexOf('insurance') != -1">
+      <p>Upload Images If Any</p>
+      <input class="f_ip" type="file" multiple="true"  (change)="onAccept($event)" accept="image/*">
+    </div>
+    <div class="f_wpr f_wpr_upload" *ngIf="router.url.indexOf('insurance') == -1 && uploadedImages.length">
+      <div>Uploaded images</div>
+      <img width="25px" [src]="im" alt="" *ngFor="let im of uploadedImages">
+    </div>
+    <div class="sel_input_wpr" *ngIf="router.url.indexOf('non-insurance') == -1">
+      <div class="input_group_blk">
+        <label>Choose Insurance Provider</label>
+        <select class="sel_txt" [(ngModel)]="selecetdInsurance" (ngModelChange)="onInsuranceChange(selecetdInsurance)">
+          <option value="-1">Select Provider</option>
+          <ng-container
+            *ngFor="let insuranceProvider of insuranseProviderList"
+          >
+            <option [value]="insuranceProvider.name">
+              {{ insuranceProvider.name }}
+            </option>
+          </ng-container>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="btn_wpr">
+    <div
+      *ngIf="page === 'booking'"
+      class="btn_action"
+      (click)="navigateToUrl('/bookings/details')"
+    >
+      Proceed
+    </div>
+    <!-- <div
+      *ngIf="page === 'booking-detail'"
+      class="btn_action"
+      (click)="checkForVehicleInfo()"
+    >
+      Complete Booking
+    </div> -->
+    <div
+      *ngIf="page === 'booking-detail'"
+      class="btn_action"
+      (click)="checkoutNew()"
+    >
+      Submit enquiry
+    </div>
+    <div
+      *ngIf="page === 'free-estimate'"
+      class="btn_action"
+      (click)="checkout()"
+    >
+      Checkout
+    </div>
+  </div>
+</div>
+
+<!-- modal -->
+<div class="modal fade" id="ModalVehicle" role="dialog">
+  <div class="modal-dialog modal-md">
+    <!-- Modal content-->
+    <form [formGroup]="vehicleForm">
+      <div class="modal-content">
+        <div class="modal-login-popup-wpr">
+          <div class="m-header">
+            <div class="close-btn" (click)="modalVehicle.hide()">
+              <button type="button" class="close" data-dismiss="modal">
+                <i class="fa fa-close"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="login-form-wpr">
+            <div class="input-group-wpr">
+              <h2>
+                Enter your <br />
+                Vehicle details
+              </h2>
+              <!-- <label class="label_txt">We will send an OTP to this number.</label> -->
+
+              <div class="input-phone-wpr mb-3">
+                <small>Vehicle Number</small>
+                <input
+                  type="text"
+                  id="mobile_code"
+                  class="input-txt"
+                  placeholder="Vehicle Number"
+                  formControlName="vehicleNumber"
+                  name="name"
+                />
+                <!-- <span class="verify-blk"><i class="fa fa-check"></i></span> -->
+              </div>
+              <div class="input-phone-wpr">
+                <small>Chassis Number</small>
+                <input
+                  type="text"
+                  id="mobile_code"
+                  class="input-txt"
+                  placeholder="Chassis Number"
+                  formControlName="chasisNumber"
+                  name="name"
+                />
+                <!-- <span class="verify-blk"><i class="fa fa-check"></i></span> -->
+              </div>
+              <!-- <div class="accept_wpr">
+                <input type="checkbox" id="accept" name="accept" value="accept" />
+                <label for="accept"> Get updates over WhatsApp</label>
+              </div> -->
+
+              <div class="m-btn-wpr">
+                <div class="btn-submit" (click)="validationAndCheckout()">
+                  Continue
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

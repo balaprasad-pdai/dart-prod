@@ -1,0 +1,61 @@
+<app-header [activeLink]="'Insurance Claims'"></app-header>
+<section class="insurance_wpr col-md-12 d-flex">
+    <div class="col-md-8">
+        <div class="col-md-5 d-flex m-3 pull-left" [ngClass]="{'col-md-11': dentType.isOpen, 'col-md-5': !dentType.isOpen}" *ngFor="let dentType of dentTypes; let i=index;">
+            <div class="insurance_head col-md-12">
+                <div class="col-md-12 d-flex">
+                    <div class="ico_wpr col-md-4">
+                        <img src="assets/images/dent.png" alt="" width="30px">
+                    </div>
+                    <div class="type_head col-md-5">{{dentType.name}}</div>
+                    <div class="col-md-3 text-end c_pointer" [ngClass]="{'d-none': dentType.isOpen}" (click)="openAccordion(dentType, i)"><i class="fa fa-angle-right"></i></div>
+                    <div class="col-md-3 text-end c_pointer" [ngClass]="{'d-none': !dentType.isOpen}" (click)="openAccordion(dentType, i)"><i class="fa fa-angle-up"></i></div>
+                </div>
+                <div class="insurance_details col-md-12 d-flex" [ngClass]="{'d-none': !dentType.isOpen}" *ngFor="let type of dentType.packageMetaData
+                ">
+                    <div class="damage_img_wpr col-md-4">
+                        <img *ngIf="!dentType.photo" src="assets/images/damage.png" alt="">
+                        <img  *ngIf="dentType.photo" [src]="dentType.photo" alt="">
+                    </div>
+                    <div class="desc_wpr col-md-8">
+                        <!-- <h3>{{type.title}}</h3> -->
+                        <div class="col-md-12 mb-4">If there is a dent it will be removed completely through an electronic dent puller with minimal impact on metal sheet strength. If the panels are damage in such a way that it cannot be repaired then we provide replacement with OEM/OES parts as per customer's preference</div>
+                        <!-- <div class="col-md-12 d-flex">
+                            <div class="sub_label col-md-4">Defect</div>
+                            <div class="col-md-8">{{type.defect}}</div>
+                        </div>
+                        <div class="col-md-12 d-flex">
+                            <div class="sub_label col-md-4">Reason</div>
+                            <div class="col-md-8">{{type.reason}}</div>
+                        </div>
+                        <div class="col-md-12 d-flex">
+                            <div class="sub_label col-md-4">Our Solution</div>
+                            <div class="col-md-8">{{type.ourSolution}}</div>
+                        </div> -->
+                        <div class="col-md-12" *ngIf="!type.selected">
+                            <div class="btn_action" (click)="addToCart(type, dentType, i)">Add To Cart</div>
+                        </div>
+                        <div class="col-md-12" *ngIf="type.selected">
+                            <div class="btn_action" (click)="removeFromCart(type, i); removeServiceFromCartList(dentType)">Remove From Cart</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div class="insurance_r col-md-4">
+        <!-- <form action="">
+            <div>
+                <input type="file">
+            </div>
+        </form> -->
+        <app-selected-packages
+        [activeCartList]="activeCartList"
+        [fromInsurance] = fromInsurance
+        [page]="'booking'"
+        [orderParams]="null"
+        (buttonClicked)="onButtonClicked($event)"
+      ></app-selected-packages>
+    </div>
+</section>
+<app-footer-nav></app-footer-nav>

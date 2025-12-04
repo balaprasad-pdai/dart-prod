@@ -1,0 +1,599 @@
+.page-section {
+  width: 100%;
+  float: left;
+  padding: 60px 0;
+  overflow: hidden;
+  /*min-height: 100vh;*/
+  /* min-height: calc(100vh - 80px); */
+  display: block;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* section {
+    display: block; */
+.owl-carousel {
+  display: inline-block;
+}
+
+.col-search-blk.active .dropdown_popup.show,
+.show {
+  display: block;
+  z-index: 2;
+  animation: animate_dropdown linear .2s;
+  animation-iteration-count: 1;
+  transition: 0.3s;
+  -moz-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+}
+
+.page-title {
+  width: 100%;
+  float: left;
+  /*text-align: center;*/
+  margin-bottom: 50px;
+}
+
+.card_claim {
+  width: 100%;
+  float: left;
+  padding: 45px;
+  background-color: #e0fff3;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.card_claim.bg_2 {
+  background-color: #FFF6E2;
+}
+
+.card_claim.bg_2 .icon_col .round {
+  background-color: #FFD166;
+}
+
+.card_claim .icon_col {
+  width: auto;
+  float: left;
+}
+
+.card_claim .icon_col .icon {
+  float: left;
+  width: 45px;
+  height: 45px;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.card_claim .icon_col .round {
+  width: 70px;
+  height: 70px;
+  float: left;
+  border-radius: 50%;
+  background-color: #97F6D1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.card_claim .icon_col .img_icon {
+  float: left;
+  min-width: 80px;
+  position: relative;
+  z-index: 1;
+  right: -17px;
+  bottom: -9px;
+}
+
+.card_claim h2 {
+  width: 100%;
+  float: left;
+  margin-top: 50px;
+  margin-bottom: 15px;
+}
+
+.card_claim .desc {
+  width: 100%;
+  float: left;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.card_claim .btn_wpr {
+  width: 100%;
+  float: left;
+}
+
+.card_claim .btn_booknow {
+  width: auto;
+  float: left;
+  display: flex;
+  white-space: nowrap;
+  padding: 10px 20px;
+  background-color: black;
+  border-radius: 35px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.card_claim .btn_booknow .icon {
+  width: 100%;
+  float: left;
+  margin-right: 15px;
+}
+
+.card_claim .btn_booknow .title {
+  width: 100%;
+  float: left;
+}
+
+.d-flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.d-flex-end {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.services_wpr .owl-nav {
+  width: auto;
+  float: left;
+  position: relative;
+  top: -20px;
+  right: 0;
+  display: grid;
+}
+
+.services_wpr.full_width .owl-nav {
+  right: 220px;
+}
+
+
+.services_wpr .owl-nav button {
+  width: 35px;
+  float: left;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white !important;
+  margin: 5px;
+  border-radius: 50%;
+  box-shadow: 0 0 11px 0px rgb(0 0 0 / 5%);
+  justify-content: space-between;
+}
+
+.testimonial_carousel_wpr .owl-nav {
+  width: auto;
+  float: left;
+}
+
+.testimonial_carousel_wpr .owl-nav button {
+  width: 35px;
+  float: left;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white !important;
+  margin: 5px;
+  border-radius: 50%;
+  box-shadow: 0 0 11px 0px rgb(0 0 0 / 5%);
+}
+
+
+.card_claim {
+  width: 100%;
+  float: left;
+  padding: 45px;
+  background-color: #e0fff3;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.card_claim.bg_2 {
+  background-color: #FFF6E2;
+}
+
+.card_claim.bg_2 .icon_col .round {
+  background-color: #FFD166;
+}
+
+.card_claim .icon_col {
+  width: auto;
+  float: left;
+}
+
+.card_claim .icon_col .icon {
+  float: left;
+  width: 45px;
+  height: 45px;
+  position: relative;
+  margin-bottom: 15px;
+}
+
+.card_claim .icon_col .round {
+  width: 70px;
+  height: 70px;
+  float: left;
+  border-radius: 50%;
+  background-color: #97F6D1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.card_claim .icon_col .img_icon {
+  float: left;
+  min-width: 80px;
+  position: relative;
+  z-index: 1;
+  right: -17px;
+  bottom: -9px;
+}
+
+.card_claim h2 {
+  width: 100%;
+  float: left;
+  margin-top: 50px;
+  margin-bottom: 15px;
+}
+
+.card_claim .desc {
+  width: 100%;
+  float: left;
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.card_claim .btn_wpr {
+  width: 100%;
+  float: left;
+}
+
+.card_claim .btn_booknow {
+  width: auto;
+  float: left;
+  display: flex;
+  white-space: nowrap;
+  padding: 10px 20px;
+  background-color: black;
+  border-radius: 35px;
+  color: #fff;
+  cursor: pointer;
+}
+
+.card_claim .btn_booknow .icon {
+  width: 100%;
+  float: left;
+  margin-right: 15px;
+}
+
+.card_claim .btn_booknow .title {
+  width: 100%;
+  float: left;
+}
+
+
+
+
+.claim_info_wpr {
+  width: 100%;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.claim_info_wpr .info_wpr {
+  width: 100%;
+  float: left;
+  text-align: center;
+  max-width: 900px;
+}
+
+.claim_info_wpr h2 {
+  width: 100%;
+  float: left;
+  color: #000;
+  font-size: 40px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.claim_info_wpr .desc {
+  width: 100%;
+  float: left;
+  font-size: 16px;
+  margin-bottom: 35px;
+  font-weight: 500;
+}
+
+.claim_info_wpr .sel_input_wpr {
+  width: 100%;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+  margin-bottom: 45px;
+}
+
+.claim_info_wpr .input_group_blk {
+  width: 100%;
+  float: left;
+  max-width: 300px;
+  position: relative;
+}
+
+.claim_info_wpr label {
+  width: auto;
+  float: left;
+  padding: 5px 13px;
+  font-size: 13px;
+  background-color: #fff;
+  font-weight: 500;
+  position: absolute;
+  left: 10px;
+  top: -13px;
+}
+
+.claim_info_wpr .sel_txt {
+  width: 100%;
+  float: left;
+  padding: 15px;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.claim_info_wpr .doc_wpr {
+  width: 100%;
+  float: left;
+  /* max-width: 840px; */
+}
+
+.claim_info_wpr .doc_wpr .info_wpr {
+  width: 100%;
+  float: left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.claim_info_wpr .doc_wpr .info_wpr .info_inwpr {
+  max-width: 550px;
+  float: left;
+}
+
+.claim_info_wpr .head_wpr {
+  width: 100%;
+  float: left;
+  font-size: 18px;
+  color: #878787;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.claim_info_wpr .col_info_blk {
+  width: 100%;
+  float: left;
+  text-align: center;
+  max-width: 680px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.claim_info_wpr .col_info_blk .col_info_inblk {
+  width: 100%;
+  float: left;
+  text-align: center;
+  max-width: 680px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.claim_info_wpr .col_info_blk .icon {
+  font-size: 22px;
+}
+
+.claim_info_wpr .col_info_blk .title {
+  width: auto;
+  float: left;
+  text-align: left;
+  white-space: nowrap;
+  padding: 0 10px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.claim_info_wpr .col_info_blk .label_info {
+  width: auto;
+  float: left;
+  white-space: nowrap;
+  font-size: 12px;
+  display: list-item;
+  margin-left: 25px;
+  color: #9A1C1F;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.title_faq {
+  width: 100%;
+  float: left;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  display: list-item;
+  margin-left: 1em;
+  margin-bottom: 15px;
+}
+
+
+
+.faq_wpr {
+  width: 100%;
+  float: left;
+}
+
+.faq_wpr .head_wpr {
+  width: 100%;
+  float: left;
+  margin-bottom: 15px;
+}
+
+.faq_wpr h2 {
+  width: 100%;
+  float: left;
+  color: #000;
+}
+
+.faq_wpr .body_wpr {
+  width: 100%;
+  float: left;
+}
+
+.faq_wpr .faq_qa_wpr {
+  width: 100%;
+  float: left;
+  border-top: solid 1px #E6E6E6;
+  padding: 15px 0;
+}
+
+.faq_wpr .question_blk {
+  width: 100%;
+  float: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+
+.faq_wpr .question_title {
+  width: 100%;
+  float: left;
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+  padding-right: 15px;
+}
+
+.faq_wpr .icon {
+  width: 40px;
+  float: left;
+  font-size: 22px;
+}
+
+.faq_wpr .answer_blk {
+  width: 100%;
+  float: left;
+  padding: 15px 0;
+  font-size: 16px;
+  /* display: none;
+animation: animate_faq linear .2s;
+animation-iteration-count: 1; */
+
+}
+
+
+@keyframes animate_faq {
+  0% {
+    opacity: 0;
+    transform: translate(0px, 10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0px, 0);
+  }
+
+
+}
+
+.testimonial_item_blk {
+  width: 100%;
+  float: left;
+}
+
+.testimonial_item_blk .icon_wpr {
+  width: 100%;
+  float: left;
+  margin-bottom: 15px;
+}
+
+.testimonial_item_blk .icon {
+  width: 40px;
+  float: left;
+  height: 40px;
+  background-color: #ff5722;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.testimonial_item_blk .desc {
+  width: 100%;
+  float: left;
+  font-size: 14px;
+  max-width: 400px;
+  margin-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.testimonial_item_blk h4 {
+  width: 100%;
+  float: left;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.testimonial_carousel_wpr {
+  width: 100%;
+  float: left;
+  margin: 15px 0;
+  padding-left: 100px;
+}
+
+
+
+::ng-deep #testimonial-carousel .owl-carousel .owl-nav {
+  bottom: -60px !important;
+  left: 0 !important;
+  top: auto;
+  right: auto;
+}
+
+/* ::ng-deep #testimonial-carousel .owl-carousel .owl-nav div {
+  background-color: #EFEFEF !important;
+}
+
+::ng-deep #testimonial-carousel .owl-carousel .owl-nav div span i {
+  color: rgb(0 0 0 / 40%);
+  font-weight: bolder;
+}
+
+::ng-deep #testimonial-carousel .owl-carousel .owl-nav div:active span i {
+  color: rgb(0 0 0);
+} */
+
+.card_experience h3 {
+  color: #353535;
+}
+.in_head{
+  color: #9a1c1f;
+  margin-bottom: 15px;
+}

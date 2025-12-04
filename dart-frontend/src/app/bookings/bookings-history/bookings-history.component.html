@@ -1,0 +1,199 @@
+<app-header></app-header>
+
+<section class="page-section bg_gray top_section_padding">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-3">
+        <div class="my_account_nav_wpr">
+          <div class="nav_wpr min_ht">
+            <div class="row_blk" (click)="navigateToUrl('profile')">
+              <span class="icon"><i class="ti ti-user"></i></span>
+              <span class="title">Personal Information</span>
+            </div>
+
+            <div
+              class="row_blk"
+              (click)="navigateToUrl('profile/profile-address')"
+            >
+              <span class="icon"><i class="ti ti-location-pin"></i></span>
+              <span class="title">Address</span>
+            </div>
+
+            <div class="row_blk active">
+              <span class="icon"><i class="ti ti-file"></i></span>
+              <span class="title">Booking History</span>
+            </div>
+          </div>
+          <div class="nav_wpr">
+            <div class="row_blk" (click)="loginService.logout()">
+              <span class="icon"><i class="ti ti-power-off"></i></span>
+              <span class="title">Logout</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="card_wpr">
+          <div class="booking_wpr">
+            <div class="head_wpr">
+              <div class="title">Booking History</div>
+              <div class="sort">
+                <label>Sort by: </label>
+                <select
+                  class="sel_sort"
+                  [(ngModel)]="sortData"
+                  (change)="sortBookingList()"
+                >
+                  <option value="recent">Recent</option>
+                  <option value="car_name">Car Name</option>
+                </select>
+              </div>
+            </div>
+            <div class="booklist_wpr">
+              <ng-container
+                *ngFor="
+                  let order of orderList
+                    | reverse : (sortData === 'recent' ? 'id' : '');
+                  let i = index
+                "
+              >
+                <ng-container *ngIf="i < 5 * count">
+                  <div class="row_book">
+                    <div class="col_txt">
+                      <div class="label">
+                        Booking ID : {{ util.getOrderId(order?.id) }}
+                      </div>
+                      <div class="title_service">
+                        <div class="col_blk">
+                          Car Name:
+                          {{ order?.orderMeta?.vehicleData?.name }}
+                        </div>
+                        <br />
+                        {{
+                          orderService.getServicesLists(
+                            order.orderMeta.package,
+                            "+"
+                          )
+                        }}
+                        <!-- <span>{{ order?.status }}</span> -->
+                        <span
+                          class="status"
+                          [ngClass]="{
+                            pending: order?.status === 'awaiting-confirmation' || order?.status === 'rejected' ||order?.status === 'approved' && !order?.staffId,
+                            inprogress:order?.status === 'approved' &&
+                                order?.staffId &&
+                                !order?.paymentStatus,
+                            completed:
+                              order?.status === 'approved' &&
+                              order?.paymentStatus
+                          }"
+                          >{{
+                            order?.status === "awaiting-confirmation" || order?.status === 'rejected' ||
+                            (order?.status === "approved" && !order?.staffId)
+                              ? "Service Booked"
+                              : order?.status === "approved" &&
+                                order?.staffId &&
+                                !order?.paymentStatus
+                              ? "Staff Assigned"
+                              : order?.status === "approved" &&
+                                order?.paymentStatus
+                              ? "Completed"
+                              : ""
+                          }}</span
+                        >
+                      </div>
+                      <div class="label_2">
+                        <span
+                          class="col_blk"
+                          *ngIf="order?.orderMeta?.selectedDate"
+                          ><i class="fa fa-calendar"></i>
+                          {{
+                            order.orderMeta.selectedDate
+                              | date : "dd MMMM, yyyy"
+                          }}</span
+                        >
+                        <span
+                          class="col_blk"
+                          *ngIf="order?.orderMeta?.selectedSlot"
+                          ><i class="fa fa-clock"></i>
+                          {{ order.orderMeta.selectedSlot
+                          }}<!-- 10 am - 11 am --></span
+                        >
+                      </div>
+                    </div>
+                    <div class="col_action">
+                      <div
+                        class="btn_action"
+                        (click)="bookingDetailList(order)"
+                      >
+                        <!-- order?.status === 'awaiting-confirmation' -->
+                        View Detail
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </ng-container>
+
+              <!-- <div
+                class="row_book"
+                (click)="navigateToUrl('bookings/history-details')"
+              >
+                <div class="col_txt">
+                  <div class="label">Booking ID : #2143252347</div>
+                  <div class="title_service">
+                    Comprehensive Service + Basic AC Service
+                    <span class="status completed">Completed</span>
+                  </div>
+                  <div class="label_2">
+                    <span class="col_blk"
+                      ><i class="fa fa-calendar"></i> 02 March, 2023</span
+                    >
+                    <span class="col_blk"
+                      ><i class="fa fa-clock"></i> 10 am - 11 am</span
+                    >
+                  </div>
+                </div>
+                <div class="col_action">
+                  <div class="btn_action">Cancel</div>
+                </div>
+              </div>
+
+              <div
+                class="row_book"
+                (click)="navigateToUrl('bookings/history-details')"
+              >
+                <div class="col_txt">
+                  <div class="label">Booking ID : #2143252347</div>
+                  <div class="title_service">
+                    Comprehensive Service + Basic AC Service
+                    <span class="status expired">Expired</span>
+                  </div>
+                  <div class="label_2">
+                    <span class="col_blk"
+                      ><i class="fa fa-calendar"></i> 02 March, 2023</span
+                    >
+                    <span class="col_blk"
+                      ><i class="fa fa-clock"></i> 10 am - 11 am</span
+                    >
+                  </div>
+                </div>
+                <div class="col_action">
+                  <div class="btn_action">Cancel</div>
+                </div>
+              </div> -->
+            </div>
+            <div
+              class="btn_loadmore_wpr"
+              *ngIf="orderList && orderList.length > 5 * count"
+              (click)="loadMoreList()"
+            >
+              <span class="btn_loadmore">Load More</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer-nav></app-footer-nav>

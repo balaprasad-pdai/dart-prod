@@ -1,0 +1,15 @@
+.owl-carousel {
+  display: inline-block;
+}
+
+.bannerimg {
+  height: 500px;
+}
+
+.itemimg {
+  height: 200px;
+}
+
+.carditem {
+  cursor: pointer;
+}

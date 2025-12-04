@@ -1,0 +1,26 @@
+.accordion-button {
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    padding: 5px 0px;
+    line-height: 2rem;
+  }
+  .accordion-button:not(.collapsed) {
+    color: #000;
+    background-color: white;
+    box-shadow: none;
+  }
+  .accordion-flush{
+    width: 100%;
+    float: left;
+    border-top: solid 1px #E6E6E6;
+    margin-top: 15px;
+  }
+  .accordion-item {
+    width: 100%;
+    border-top: none;
+    padding: 15px 0;
+  }
+  .accordion-body{
+    padding: 16px 0px !important;
+  }

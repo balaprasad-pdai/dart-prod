@@ -1,0 +1,375 @@
+.upload_car_card{
+    width: 100%;
+    float: left;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+       transition: 0.3s;
+    -moz-transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    -ms-transition: 0.3s;
+  }
+  .upload_car_card:hover{
+    box-shadow: 0 3px 9px 0px rgb(0 0 0 / 26%);
+  }
+  
+  .upload_car_card .img_blk{
+    width: 100px;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .upload_car_card .image_wpr{
+    width: 100%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 130px;
+  }
+  .upload_car_card .mainimg_blk{
+     width: 100%;
+     float: left;
+     max-width: 240px;
+     margin-bottom: 15px;
+  }
+  .upload_car_card .title{
+    width: 100%;
+    float: left;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+    padding: 15px;
+  }
+  .upload_car_card .btn_wpr{
+    width: 100%;
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+    .upload_car_card .btn_wpr .btn_upload{
+    position: relative;
+  }
+    .upload_car_card .btn_wpr .file_upload {
+    position: absolute;
+      opacity: 0;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+  }
+  .upload_car_card .btn_upload{
+    width: auto;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    color: #fff;
+    border-radius: 45px;
+    padding: 5px 25px;
+    cursor: pointer;
+  }
+  
+  .upload_car_card .btn_upload .title{
+    
+  padding: 5px 10px;
+    
+  font-size: 14px;
+  }
+
+  .change_car_card{
+    width: 100%;
+    float: left;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 15px;
+       transition: 0.3s;
+    -moz-transition: 0.3s;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    -ms-transition: 0.3s;
+  }
+  .change_car_card:hover{
+    box-shadow: 0 3px 9px 0px rgb(0 0 0 / 26%);
+  }
+  
+  
+  .col-change-blk{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: auto;
+    float: left;
+    position: relative;
+  }
+  .col-change-blk .icon{
+    
+  width: auto;
+    
+  float: left;
+    
+  margin-right: 15px;
+  }
+  .col-change-blk .search-input{
+    
+  font-weight: 600;
+  }
+  
+  .col-change-blk .search-input small{
+    font-weight: 400;
+  }
+  .change_car_card .btn-change{
+      width: auto;
+      float: left;
+      background-color: #000;
+      padding: 8px 22px;
+      color: #fff;
+      border-radius: 26px;
+      font-weight: 500;
+      font-size: 14px;
+      white-space: nowrap;
+      cursor: pointer;
+  }
+  .change_car_card .head_wpr{
+    width: 100%;
+    float: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .change_car_card .col-left{
+    width: 100%;
+    float: left;
+  }
+  .change_car_card .col-right{
+    width: auto;
+    float: left;
+  }
+  .change_car_card .tc_wpr{
+    width: 100%;
+    float: left;
+  }
+  .change_car_card .tc_ul{
+    width: 100%;
+    float: left;
+    list-style: disc;
+    padding-left: 20px;
+    min-height: 40vh;
+  }
+  .change_car_card li{
+    width: 100%;
+    float: left;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  .change_car_card .btn_wpr{
+    width: 100%;
+    float: left;
+    padding: 15px;
+  }
+  .change_car_card .btn_estimate{
+    width: 100%;
+    float: left;
+    text-align: center;
+    background-color: #9a1c1f;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 15px;
+    border-radius: 45px;
+    cursor: pointer;
+  }
+  hr{
+    width: 100%;
+    float: left;
+  }
+  .card_call{
+    width: 100%;
+    float: left;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 5px;
+    justify-content: center;
+    margin-bottom: 15px;
+ }
+ 
+ .card_call .icon_col{
+   width: 130px;
+   float: left;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 5px;
+ }
+ .card_call .icon{
+   float: left;
+   width: 45px;
+   height: 45px;
+   position: relative;
+   margin-bottom: 15px;
+ }
+ .card_call .round{
+   width: 50px;
+   height: 50px;
+   float: left;
+   border-radius: 50%;
+   background-color: #FFD166;
+   position: absolute;
+   top: 0;
+   left: 0;
+ }
+ .card_call .img_icon{
+       width: 70px;
+       position: relative;
+       z-index: 1;
+       right: -13px;
+       bottom: -7px;
+ }
+ .card_call .text_col{
+   width: 100%;
+   float: left;
+   font-size: 16px;
+   font-weight: 600;
+   padding-left: 10px;
+   line-height: 18px;
+ }
+ .page-section{
+    width: 100%;
+    float: left;
+    padding: 60px 0;
+    overflow: hidden;
+    /*min-height: 100vh;*/
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* margin-top: 50px; */
+}
+.page-title{
+  width: 100%;
+  float: left;
+  /*text-align: center;*/
+  margin-bottom: 35px;
+  margin-top: 50px;
+ 
+ 
+}
+title_faq{
+    width: 100%;
+  float: left;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  display: list-item;
+  margin-left: 1em;
+  margin-bottom: 15px;
+}
+
+
+
+.faq_wpr{
+width: 100%;
+float: left;
+}
+.faq_wpr .head_wpr{
+width: 100%;
+float: left;
+margin-bottom: 15px;
+}
+.faq_wpr h2{
+width: 100%;
+float: left;
+color: #000;
+}
+.faq_wpr .body_wpr{
+width: 100%;
+float: left;
+}
+
+.p_dots{
+    position: absolute;
+    left: 0;
+    top: 10%;
+    margin-top: 55px;
+}
+.faq_wpr .faq_qa_wpr{
+width: 100%;
+float: left;
+border-top: solid 1px #E6E6E6;
+padding: 15px 0;
+}
+.faq_wpr .question_blk{
+width: 100%;
+float: left;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 5px 0;
+cursor: pointer;
+}
+.faq_wpr .question_title{
+width: 100%;
+float: left;
+font-size: 18px;
+font-weight: 600;
+color: #000;
+padding-right: 15px;
+}
+.faq_wpr .icon{
+width: 40px;
+float: left;
+font-size: 22px;
+}
+.faq_wpr .answer_blk{
+width: 100%;
+float: left;
+padding: 15px 0;
+font-size: 16px;
+/* display: none;
+animation: animate_faq linear .2s;
+animation-iteration-count: 1; */
+
+}
+.page-title{
+    width: 100%;
+    float: left;
+    /*text-align: center;*/
+    margin-bottom: 50px;
+  }
+
+.title_faq{
+    width: 100%;
+  float: left;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  display: list-item;
+  margin-left: 1em;
+  margin-bottom: 15px;
+}
+
+
+@keyframes animate_faq {
+0% {
+     opacity: 0;
+    transform: translate(0px, 10px);
+  }
+100% {
+    opacity: 1;
+    transform: translate(0px, 0);
+  }
+
+
+}
+
+  
+  

@@ -1,0 +1,276 @@
+<app-header [activeLink]="'Insurance Claims'"></app-header>
+
+<section class="page-section top_section_padding" style="margin-top: 30px">
+  <div class="container">
+    <!-- <span class="p_dots" style="padding-top: 100px"
+      ><img src="assets/images/dots.svg"
+    /></span> -->
+    <span
+      class="arrow_slider"
+      style="position: absolute; right: 80px; width: 100px; top: 150px"
+    ></span>
+    <div class="brand_text_wpr mb-5">
+      <h3 class="in_head">INSURANCE CLAIM</h3>
+      <div class="insurance_slider_wpr">
+        <div class="container">
+          <h3 class="title_top">
+            Damaged your car?<br />
+            Leave your worries to DART
+          </h3>
+          <!-- <div class="silder_img">
+            <img src="assets/images/insurance.png" />
+          </div>
+          <h3 class="title_bottom">
+            Insurance claims and car <br />
+            repairs from comfort of <br />
+            your home.
+          </h3> -->
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card_experience card_black">
+          <div class="icon_wpr d-flex justify-content-center">
+            <span class="icon bg_1"><i class="ti ti-settings"></i></span>
+          </div>
+          <h3 class="text-center">Expert Repairs Management</h3>
+          <div class="desc"></div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card_experience card_black">
+          <div class="icon_wpr d-flex justify-content-center">
+            <span class="icon bg_2"><i class="ti ti-file"></i></span>
+          </div>
+          <h3 class="text-center">End to End Cashless Claim Settlements</h3>
+          <div class="desc"></div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card_experience card_black">
+          <div class="icon_wpr d-flex justify-content-center">
+            <span class="icon bg_3"><i class="ti ti-notepad"></i></span>
+          </div>
+          <h3 class="text-center">Listed as Preferred Garage with all Insurance Providers</h3>
+          <div class="desc"></div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card_experience card_black">
+          <div class="icon_wpr d-flex justify-content-center">
+            <span class="icon bg_4"><i class="ti ti-key"></i></span>
+          </div>
+          <h3 class="text-center">Free Pickup & Drop</h3>
+          <div class="desc"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- <router-outlet></router-outlet> -->
+<section class="page-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card_claim">
+          <div class="icon_col">
+            <span class="icon">
+              <span class="round"></span>
+              <img src="assets/images/frame.png" class="img_icon" />
+            </span>
+          </div>
+          <h2>
+            Car Claim <br />
+            Insurance
+          </h2>
+          <div class="desc">
+            DART's claims assistance service assures to free you from all kinds
+            of troubles while getting your car repaired and making insurance
+            claims for it.All non-insurance repairs or work will be approved by
+            you, there are no hidden charges.
+          </div>
+          <div class="btn_wpr">
+            <div class="btn_booknow" (click)="navigateToUrl('body-and-paint-repair/insurance')">
+              <span class="icon"><i class="ti ti-check-box"></i></span>
+              <span class="title">Book Now </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card_claim bg_2">
+          <div class="icon_col">
+            <span class="icon">
+              <span class="round"></span>
+              <img src="assets/images/frame.png" class="img_icon" />
+            </span>
+          </div>
+          <h2>
+            Get work done <br />
+            without Insurance
+          </h2>
+          <div class="desc">
+            <p>
+              Avoid claiming for minor scratches and dents to safeguard the NCB (No cliam bonus)
+              discount during your renewal since it can substantially reduce your insurance premium.
+            </p>
+            <p>
+             DART has you covered, we will get this work done for you at 1/3rd the cost of an OEM workshop while maintainig higher quality.
+            </p>
+          </div>
+          <div class="btn_wpr">
+            <div class="btn_booknow">
+              <span class="icon"><i class="ti ti-check-box"></i></span>
+              <span class="title" (click)="navigateToUrl('body-and-paint-repair/non-insurance')">Book Now </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-our-process></app-our-process>
+
+<app-testimonials></app-testimonials>
+
+<app-our-blogs
+  *ngIf="blogsList.length"
+  [blogsList]="blogsList"
+  [blogcategory]="blogcategory"
+  [blogsOptions]="blogsOptions"
+></app-our-blogs>
+
+<section class="page-section">
+  <div class="container">
+    <div class="claim_info_wpr">
+      <div class="info_wpr">
+        <h2>What about partial claim settlement</h2>
+        <div class="desc">
+          There may be reasons why your insurer may pay some but not the full
+          value of your claim. This happens when the insurer’s assessment of the
+          level of car damages differs from your assessment. It generally
+          depends on the specifics of the claim, type of coverage, and terms and
+          conditions related to the relevant policy.
+        </div>
+
+        <!-- <div class="sel_input_wpr">
+          <div class="input_group_blk">
+            <label>Choose Insurace Provider</label>
+            <select class="sel_txt" [(ngModel)]="selecetdInsurance">
+              <option value="-1">Select Provider</option>
+              <ng-container
+                *ngFor="let insuranceProvider of insuranseProviderList"
+              >
+                <option [value]="insuranceProvider.id">
+                  {{ insuranceProvider.name }}
+                </option>
+              </ng-container>
+            </select>
+          </div>
+        </div> -->
+
+        <div class="doc_wpr">
+          <div class="head_wpr">Get these Documents Ready</div>
+          <div class="info_wpr">
+            <div class="info_inwpr">
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="col_info_blk">
+                    <div class="col_info_inblk">
+                      <span class="icon"><i class="ti ti-file"></i></span>
+                      <span class="title">Claim Form</span>
+                      <a
+                        href="javascript:void(0)"
+                        class="label_info"
+                        (click)="downloadInsuranceClaim()"
+                      >
+                        Download</a
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="col_info_blk">
+                    <div class="col_info_inblk">
+                      <span class="icon"><i class="ti ti-file"></i></span>
+                      <span class="title">Policy Copy</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="col_info_blk">
+                    <div class="col_info_inblk">
+                      <span class="icon"><i class="ti ti-file"></i></span>
+                      <span class="title">RC of the Vechile</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="col_info_blk">
+                    <div class="col_info_inblk">
+                      <span class="icon"><i class="ti ti-file"></i></span>
+                      <span class="title">PAN Card</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="col_info_blk">
+                    <div class="col_info_inblk">
+                      <span class="icon"><i class="ti ti-file"></i></span>
+                      <span class="title">Driving License</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="col_info_blk">
+                    <div class="col_info_inblk">
+                      <span class="icon"><i class="ti ti-file"></i></span>
+                      <span class="title">Aadhaar Card</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="page-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-10">
+
+        <div class="head_wpr">
+          <h2>
+            Here’s the answer to the most <br />
+            common questions
+          </h2>
+        </div>
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+          <div class="accordion-item" *ngFor="let item of value; let i = index">
+            <h2 class="accordion-header" id="flush-headingOne{{i}}">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#flush-collapseOne'+i" aria-expanded="false" aria-controls="flush-collapseOne">
+                <span class="question_title">{{ item.question }}</span>
+              </button>
+            </h2>
+            <div [id]="'flush-collapseOne'+i" class="accordion-collapse collapse" [attr.aria-labelledby]="'flush-headingOne'+i" data-bs-parent="#accordionFlushExample">
+              <div class="accordion-body">{{ item.answer }}</div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</section> -->
+<app-faq></app-faq>
+<app-footer-nav></app-footer-nav>

@@ -1,0 +1,179 @@
+<app-header></app-header>
+
+<section class="page-section bg_gray top_section_padding">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-3">
+        <div class="my_account_nav_wpr">
+          <div class="nav_wpr min_ht">
+            <div class="row_blk" (click)="navigateToUrl('profile')">
+              <span class="icon"><i class="ti ti-user"></i></span>
+              <span class="title">Personal Information</span>
+            </div>
+
+            <div
+              class="row_blk"
+              (click)="navigateToUrl('profile/profile-address')"
+            >
+              <span class="icon"><i class="ti ti-location-pin"></i></span>
+              <span class="title">Address</span>
+            </div>
+
+            <div class="row_blk" (click)="navigateToUrl('bookings/history')">
+              <span class="icon"><i class="ti ti-file"></i></span>
+              <span class="title">Booking History</span>
+            </div>
+          </div>
+          <div class="nav_wpr">
+            <div class="row_blk" (click)="loginService.logout()">
+              <span class="icon"><i class="ti ti-power-off"></i></span>
+              <span class="title">Logout</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="card_wpr">
+          <div class="booking_wpr">
+            <div class="head_wpr">
+              <div class="title">
+                <span
+                  class="go-back"
+                  (click)="navigateToUrl('/bookings/history')"
+                >
+                  <i class="fa fa-arrow-left"></i>
+                </span>
+                Booking History
+                <span class="booking_id"
+                  >Booking ID : {{ util.getOrderId(orderDetailList?.id) }}</span
+                >
+              </div>
+            </div>
+            <div class="booklist_wpr">
+              <div class="row_book">
+                <div class="col_txt">
+                  <div class="label">
+                    Car Name:
+                    {{ orderDetailList?.orderMeta?.vehicleData?.name }}
+                  </div>
+                  <div class="title_service">
+                    {{
+                      orderService.getServicesLists(
+                        orderDetailList?.orderMeta?.package,
+                        "+"
+                      )
+                    }}
+                    <span
+                      class="status"
+                      [ngClass]="{
+                        pending: orderDetailList?.status === 'awaiting-confirmation' || orderDetailList?.status === 'rejected' || orderDetailList?.status === 'approved' && !orderDetailList?.staffId,
+                            inprogress:orderDetailList?.status === 'approved' &&
+                            orderDetailList?.staffId &&
+                                !orderDetailList?.paymentStatus,
+                            completed:
+                            orderDetailList?.status === 'approved' &&
+                            orderDetailList?.paymentStatus
+                      }"
+                      >{{
+                        orderDetailList?.status === "awaiting-confirmation" || orderDetailList?.status === 'rejected' ||
+                        (orderDetailList?.status === "approved" &&
+                          !orderDetailList?.staffId)
+                          ? "Service Booked"
+                          : orderDetailList?.status === "approved" &&
+                            orderDetailList?.staffId &&
+                            !orderDetailList?.paymentStatus
+                          ? "Staff Assigned"
+                          : orderDetailList?.status === "approved" &&
+                            orderDetailList?.paymentStatus
+                          ? "Completed"
+                          : ""
+                      }}</span
+                    >
+                  </div>
+                  <div class="label_2">
+                    <span
+                      class="col_blk"
+                      *ngIf="orderDetailList?.orderMeta?.selectedDate"
+                      ><i class="fa fa-calendar"></i>
+                      {{
+                        orderDetailList.orderMeta.selectedDate
+                          | date : "dd MMMM, yyyy"
+                      }}</span
+                    >
+                    <span
+                      class="col_blk"
+                      *ngIf="orderDetailList?.orderMeta?.selectedSlot"
+                      ><i class="fa fa-clock"></i>
+                      {{ orderDetailList?.orderMeta?.selectedSlot }}</span
+                    >
+                  </div>
+                </div>
+                <!-- <div class="col_action">
+                  <div class="btn_action">Re-book</div>
+                </div> -->
+              </div>
+            </div>
+
+            <div class="billing_wpr mt-25">
+              <div class="row my-3 g-3">
+                <div class="col-md-4">
+                  <div class="title">Booking Address</div>
+                  <div class="address_blk">
+                    <div class="name">
+                      {{ orderDetailList?.orderMeta?.address?.name }}
+                    </div>
+                    <div class="desc">
+                      {{
+                        orderDetailList?.orderMeta?.address?.address?.address1
+                      }}
+                      <br />
+                      {{
+                        orderDetailList?.orderMeta?.address?.address?.landmark
+                      }}
+                      <br />
+                      {{ orderDetailList?.orderMeta?.address?.address?.city }},
+                      {{ orderDetailList?.orderMeta?.address?.address?.state }}
+                      <br />
+                      Mobile: +91-{{ orderDetailList?.orderMeta?.address?.address?.number }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="title">Payment Details</div>
+                  <div class="billing_amount_wpr">
+                    <div class="row_info">
+                      <span class="title_info">Sub Total</span>
+                      <span class="title_val">{{
+                        orderDetailList?.orderMeta?.totalAmount
+                          | currency : "INR"
+                      }}</span>
+                    </div>
+                    <div class="row_info">
+                      <span class="title_info">GST (18%)</span>
+                      <span class="title_val">{{
+                        orderDetailList?.orderMeta?.gstAmount | currency : "INR"
+                      }}</span>
+                    </div>
+                    <hr />
+                    <div class="row_info head">
+                      <span class="title_info">Total Price</span>
+                      <span class="title_val">{{
+                        orderDetailList?.paymentTotal | currency : "INR"
+                      }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- <div class="btn_loadmore_wpr" style="justify-content: flex-start">
+              <span class="btn_loadmore">Download Invoice</span>
+            </div> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer-nav></app-footer-nav>

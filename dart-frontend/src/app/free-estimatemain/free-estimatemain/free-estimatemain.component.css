@@ -1,0 +1,150 @@
+.card_free_estimate{
+    width: 100%;
+    float: left;
+    display: flex;
+    align-items: center;
+    background-color: #E0FFF3;
+    border-radius: 20px;
+    padding: 20px;
+    justify-content: center;
+    margin-bottom: 15px;
+ }
+ .card_free_estimate.bg_2{
+   background-color: #FFF6E2;
+ }.card_free_estimate.bg_2 .round{
+   background-color: #FFD166;
+ }
+ .card_free_estimate .icon_col{
+   width: 200px;
+   float: left;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+ .card_free_estimate .icon{
+   float: left;
+   width: 65px;
+   height: 60px;
+   position: relative;
+   margin-bottom: 15px;
+ }
+ .card_free_estimate .round{
+   width: 70px;
+   height: 70px;
+   float: left;
+   border-radius: 50%;
+   background-color: #97F6D1;
+   position: absolute;
+   top: 0;
+   left: 0;
+ }
+ .card_free_estimate .img_icon{
+       width: 70px;
+     position: relative;
+     z-index: 1;
+     right: -17px;
+     bottom: -17px;
+ }
+ .card_free_estimate .text_col{
+   width: 100%;
+   float: left;
+   font-size: 21px;
+   font-weight: 600;
+   padding-left: 10px;
+ }
+ .page-section{
+    width: 100%;
+    float: left;
+    padding: 60px 0;
+    overflow: hidden;
+    /*min-height: 100vh;*/
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+ }
+ .title_faq{
+    width: 100%;
+  float: left;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  display: list-item;
+  margin-left: 1em;
+  margin-bottom: 15px;
+}
+
+
+
+.faq_wpr{
+width: 100%;
+float: left;
+}
+.faq_wpr .head_wpr{
+width: 100%;
+float: left;
+margin-bottom: 15px;
+}
+.faq_wpr h2{
+width: 100%;
+float: left;
+color: #000;
+}
+.faq_wpr .body_wpr{
+width: 100%;
+float: left;
+}
+.faq_wpr .faq_qa_wpr{
+width: 100%;
+float: left;
+border-top: solid 1px #E6E6E6;
+padding: 15px 0;
+}
+.faq_wpr .question_blk{
+width: 100%;
+float: left;
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 5px 0;
+cursor: pointer;
+}
+.faq_wpr .question_title{
+width: 100%;
+float: left;
+font-size: 18px;
+font-weight: 600;
+color: #000;
+padding-right: 15px;
+}
+.faq_wpr .icon{
+width: 40px;
+float: left;
+font-size: 22px;
+}
+.faq_wpr .answer_blk{
+width: 100%;
+float: left;
+padding: 15px 0;
+font-size: 16px;
+/* display: none;
+animation: animate_faq linear .2s;
+animation-iteration-count: 1; */
+
+}
+
+
+@keyframes animate_faq {
+0% {
+     opacity: 0;
+    transform: translate(0px, 10px);
+  }
+100% {
+    opacity: 1;
+    transform: translate(0px, 0);
+  }
+
+
+}
+

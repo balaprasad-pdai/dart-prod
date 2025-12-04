@@ -1,0 +1,389 @@
+<!-- <div
+  class="backdrop"
+  [ngStyle]="{
+    'display': util.showAddressModal ? 'block':'none'
+  }"
+></div> -->
+<!-- Modal -->
+<div class="modal fade" id="ModalAdd_Address" role="dialog">
+  <div class="modal-dialog modal-md" style="max-width: 720px">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-login-popup-wpr">
+        <div class="m-header">
+          <div class="close-btn">
+            <button type="button" class="close" (click)="closeModal()">
+              <i class="fa fa-close"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="form_input_wpr">
+          <h2 class="title">Add Address</h2>
+          <form (ngSubmit)="saveAddress()" [formGroup]="addressAddForm">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="row type">
+                  <div
+                    class="col-lg-3 itemcity items-center"
+                    *ngFor="let address of addressType"
+                    [ngClass]="{
+                      selected: address.id == selectedAddressType,
+                      'is-invalid': submitted && form['addressType'].errors
+                    }"
+                    (click)="saveAddressType(address)"
+                  >
+                    <div class="fuelimg"></div>
+                    <h6>
+                      {{ address.type }}
+                    </h6>
+                  </div>
+                  <!-- <div
+                  *ngIf="submitted && form['addressType'].errors"
+                  class="invalid-feedback errormsg"
+                  align="bottom"
+                >
+                  <div>Address Type is required</div>
+                </div> -->
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div
+                  class="form-control item"
+                  [ngClass]="{
+                    'is-invalid': submitted && form['name'].errors
+                  }"
+                >
+                  <input
+                    type="text"
+                    name="name"
+                    class="form-input"
+                    placeholder="none"
+                    required=""
+                    formControlName="name"
+                  />
+                  <label for="name" class="form-label">Full Name*</label>
+                  <div
+                    *ngIf="submitted && form['name'].errors"
+                    class="invalid-feedback errorname"
+                  >
+                    <div>Full Name is required</div>
+                  </div>
+                </div>
+              </div>
+              <!-- *ngIf="form['name'].errors['required']" -->
+              <div class="col-md-6">
+                <div
+                  class="form-control item"
+                  [ngClass]="{
+                    'is-invalid': submitted && form['email'].errors
+                  }"
+                >
+                  <input
+                    type="text"
+                    class="form-input"
+                    placeholder="none"
+                    required=""
+                    formControlName="email"
+                  />
+                  <label for="email" class="form-label">Email*</label>
+                  <div
+                    *ngIf="submitted && form['email'].errors"
+                    class="invalid-feedback errorname"
+                  >
+                    <div *ngIf="form['email'].errors['required']">
+                      Email is required
+                    </div>
+                    <div *ngIf="form['email'].errors['pattern']">
+                      Please enter valid mail!
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div
+                  class="form-control item"
+                  [ngClass]="{
+                    'is-invalid': submitted && form['address1'].errors
+                  }"
+                >
+                  <input
+                    type="text"
+                    name="address"
+                    class="form-input"
+                    placeholder="none"
+                    required=""
+                    formControlName="address1"
+                  />
+                  <label for="address" class="form-label">Address**</label>
+                  <div
+                    *ngIf="submitted && form['address1'].errors"
+                    class="invalid-feedback errorname"
+                  >
+                    <div *ngIf="form['address1'].errors['required']">
+                      Address is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div
+                  class="form-control item"
+                  [ngClass]="{
+                    'is-invalid': submitted && form['landmark'].errors
+                  }"
+                >
+                  <input
+                    type="text"
+                    name="landmark"
+                    class="form-input"
+                    placeholder="none"
+                    required=""
+                    formControlName="landmark"
+                  />
+                  <label for="landmark" class="form-label">Landmark*</label>
+                  <div
+                    *ngIf="submitted && form['landmark'].errors"
+                    class="invalid-feedback errorname"
+                  >
+                    <div *ngIf="form['landmark'].errors['required']">
+                      Landmark is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div
+                  class="form-control item"
+                  [ngClass]="{
+                    'is-invalid': submitted && form['number'].errors
+                  }"
+                >
+                  <input
+                    type="text"
+                    name="number"
+                    class="form-input"
+                    placeholder="none"
+                    required=""
+                    formControlName="number"
+                  />
+                  <label for="number" class="form-label"
+                    >Alternative Number*</label
+                  >
+                  <div
+                    *ngIf="submitted && form['number'].errors"
+                    class="invalid-feedback errorname"
+                  >
+                    <div *ngIf="form['number'].errors['required']">
+                      Number is required
+                    </div>
+                    <div *ngIf="form['number'].errors['pattern']">
+                      Numbers are only allowed!
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div
+                  class="form-control item"
+                  [ngClass]="{
+                    'is-invalid': submitted && form['stateName'].errors
+                  }"
+                >
+                  <select
+                    type="text"
+                    name="state"
+                    class="form-input"
+                    placeholder="none"
+                    required=""
+                    formControlName="stateName"
+                    (change)="changeState()"
+                  >
+                    <option value="{{ state }}" *ngFor="let state of states">
+                      {{ state }}
+                    </option>
+                  </select>
+                  <label for="state" class="form-label">State*</label>
+                  <div
+                    *ngIf="submitted && form['stateName'].errors"
+                    class="invalid-feedback errorname"
+                  >
+                    <div *ngIf="form['stateName'].errors['required']">
+                      State is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div
+                  class="form-control item"
+                  [ngClass]="{
+                    'is-invalid': submitted && form['city'].errors
+                  }"
+                >
+                  <select
+                    type="text"
+                    name="city"
+                    class="form-input"
+                    placeholder="none"
+                    required=""
+                    formControlName="city"
+                  >
+                    <ng-container *ngFor="let city of filteredCityList">
+                      <option value="{{ city?.name }}">{{ city?.name }}</option>
+                    </ng-container>
+                  </select>
+                  <label for="city" class="form-label">City*</label>
+                  <div
+                    *ngIf="submitted && form['city'].errors"
+                    class="invalid-feedback errorname"
+                  >
+                    <div *ngIf="form['city'].errors['required']">
+                      City is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div class="row">
+              <div class="team_label">
+                <input type="checkbox" name="" /> use this as default address
+              </div>
+            </div> -->
+
+            <div class="row">
+              <div class="btn_ft_wpr">
+                <button
+                  type="submit"
+                  class="btn_submit ml-15"
+                  *ngIf="!form['ids'].value"
+                >
+                  Save Address
+                </button>
+                <button
+                  type="submit"
+                  class="btn_submit ml-15"
+                  *ngIf="form['ids'].value"
+                >
+                  Update
+                </button>
+                <button type="reset" class="btn_cancel" (click)="closeModal()">
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-header *ngIf="!cartPageList"></app-header>
+
+<section
+  [ngClass]="{ 'page-section bg_gray top_section_padding': !cartPageList }"
+>
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-3" *ngIf="!cartPageList">
+        <div class="my_account_nav_wpr">
+          <div class="nav_wpr min_ht">
+            <div class="row_blk" (click)="navigateToUrl('profile')">
+              <span class="icon"><i class="ti ti-user"></i></span>
+              <span class="title">Personal Information</span>
+            </div>
+
+            <div class="row_blk active">
+              <span class="icon"><i class="ti ti-location-pin"></i></span>
+              <span class="title">Address</span>
+            </div>
+
+            <div class="row_blk" (click)="navigateToUrl('bookings/history')">
+              <span class="icon"><i class="ti ti-file"></i></span>
+              <span class="title">Booking History</span>
+            </div>
+          </div>
+          <div class="nav_wpr">
+            <div class="row_blk" (click)="headerService.logout()">
+              <span class="icon"><i class="ti ti-power-off"></i></span>
+              <span class="title">Logout</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [ngClass]="{ 'col-md-9': !cartPageList, 'col-md-12': cartPageList }">
+        <div class="card_wpr">
+          <div class="address_wpr">
+            <h2 class="head_title">Add Address</h2>
+            <div class="row">
+              <div class="col-md-12" *ngFor="let address of addressList">
+                <div class="address_blk" (click)="addressSelect(address)">
+                  <div class="sel_blk">
+                    <input
+                      type="radio"
+                      [name]="address.id"
+                      [checked]="address.active"
+                    />
+                  </div>
+                  <div class="address_text">
+                    <div class="title_name">{{ address?.name }}</div>
+                    <div class="desc">
+                      {{ address?.address?.address1 }}<br />
+                      {{ address?.address?.landmark }}<br />
+                      {{ address?.address?.city }} - {{ address?.address?.state
+                      }}<br />
+                      Mobile: +91 {{ address?.address?.number }}
+                    </div>
+                    <div class="address_btn_wpr">
+                      <div class="btn_action" (click)="editDataGet(address)">
+                        <i class="fa fa-edit"></i> Edit
+                      </div>
+                      <div class="btn_action" (click)="delete(address?.id)">
+                        <i class="fa fa-trash"></i> Delete
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- <div class="col-md-6">
+                <div class="address_blk">
+                  <div class="sel_blk"><input type="radio" name="" /></div>
+                  <div class="address_text">
+                    <div class="title_name">Albin Joseph</div>
+                    <div class="desc">
+                      Lulu Cyber Park,Infopark Kochi, Kerala <br />
+                      Mobile: +91 9048528552
+                    </div>
+                    <div class="address_btn_wpr">
+                      <div class="btn_action">
+                        <i class="fa fa-edit"></i> Edit
+                      </div>
+                      <div class="btn_action">
+                        <i class="fa fa-trash"></i> Delete
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <div class="btn_add_address" (click)="openModal()">
+                  + Add Address
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer-nav *ngIf="!cartPageList"></app-footer-nav>

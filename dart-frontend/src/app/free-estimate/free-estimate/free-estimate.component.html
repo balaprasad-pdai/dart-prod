@@ -1,0 +1,280 @@
+<app-header [activeLink]="'Free Estimate'"></app-header>
+<section
+  class="page-section top_section_padding bg_gray"
+  style="padding-top: 110px"
+>
+  <div class="container">
+    <span class="p_dots"><img src="assets/images/dots.svg" alt="" /></span>
+    <span
+      class="arrow_slider"
+      style="position: absolute; right: 80px; width: 100px; top: 150px"
+    ></span>
+    <div class="brand_text_wpr mb-5 sal-animate">
+      <h4>FREE ESTIMATE</h4>
+      <h2>
+        Upload photos and get AI estimate <br />
+        for your {{ selectedCarModel?.brand?.name }}
+        {{ selectedCarModel?.name }} in {{ selectedCity }}
+      </h2>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="upload_car_card">
+                <div class="image_wpr">
+                  <span class="img_blk">
+                    <img
+                      alt=""
+                      [src]="
+                        util.selectedFileUrl[0]
+                          ? util.selectedFileUrl[0]
+                          : 'assets/images/4.png'
+                      "
+                    />
+                  </span>
+                </div>
+                <div class="title">
+                  Upload front view <br />
+                  of your car
+                </div>
+                <div class="btn_wpr">
+                  <div class="btn_upload">
+                    <input
+                      class="file_upload"
+                      type="file"
+                      name="frontView"
+                      (change)="onFileSelectedView($event, 0)"
+                      accept="image/*"
+                    />
+                    <span class="icon"
+                      ><i
+                        class="fa"
+                        [ngClass]="{
+                          'fa-cloud-upload': !util.selectedFileUrl[0],
+                          'fa-exchange': util.selectedFileUrl[0]
+                        }"
+                      ></i
+                    ></span>
+                    <span class="title"
+                      >{{ util.selectedFileUrl[0] ? "Change" : "Upload" }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="upload_car_card">
+                <div class="image_wpr">
+                  <span class="img_blk">
+                    <img
+                      alt=""
+                      [src]="
+                        util.selectedFileUrl[1]
+                          ? util.selectedFileUrl[1]
+                          : 'assets/images/1.png'
+                      "
+                    />
+                  </span>
+                </div>
+                <div class="title">
+                  Upload rear view <br />
+                  of your car
+                </div>
+                <div class="btn_wpr">
+                  <div class="btn_upload">
+                    <input
+                      class="file_upload"
+                      type="file"
+                      name="frontView"
+                      (change)="onFileSelectedView($event, 1)"
+                      accept="image/*"
+                    />
+                    <span class="icon"
+                      ><i
+                        class="fa"
+                        [ngClass]="{
+                          'fa-cloud-upload': !util.selectedFileUrl[1],
+                          'fa-exchange': util.selectedFileUrl[1]
+                        }"
+                      ></i
+                    ></span>
+                    <span class="title"
+                      >{{ util.selectedFileUrl[1] ? "Change" : "Upload" }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="upload_car_card">
+                <div class="image_wpr">
+                  <span class="img_blk">
+                    <img
+                      alt=""
+                      [src]="
+                        util.selectedFileUrl[2]
+                          ? util.selectedFileUrl[2]
+                          : 'assets/images/2.png'
+                      "
+                    />
+                  </span>
+                </div>
+                <div class="title">
+                  Upload left view <br />
+                  of your car
+                </div>
+                <div class="btn_wpr">
+                  <div class="btn_upload">
+                    <input
+                      class="file_upload"
+                      type="file"
+                      name="frontView"
+                      (change)="onFileSelectedView($event, 2)"
+                      accept="image/*"
+                    />
+                    <span class="icon"
+                      ><i
+                        class="fa"
+                        [ngClass]="{
+                          'fa-cloud-upload': !util.selectedFileUrl[2],
+                          'fa-exchange': util.selectedFileUrl[2]
+                        }"
+                      ></i
+                    ></span>
+                    <span class="title"
+                      >{{ util.selectedFileUrl[2] ? "Change" : "Upload" }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="upload_car_card">
+                <div class="image_wpr">
+                  <span class="img_blk">
+                    <img
+                      alt=""
+                      [src]="
+                        util.selectedFileUrl[3]
+                          ? util.selectedFileUrl[3]
+                          : 'assets/images/3.png'
+                      "
+                    />
+                  </span>
+                </div>
+                <div class="title">
+                  Upload right view <br />
+                  of your car
+                </div>
+                <div class="btn_wpr">
+                  <div class="btn_upload">
+                    <input
+                      class="file_upload"
+                      type="file"
+                      name="frontView"
+                      (change)="onFileSelectedView($event, 3)"
+                      accept="image/*"
+                    />
+                    <span class="icon"
+                      ><i
+                        class="fa"
+                        [ngClass]="{
+                          'fa-cloud-upload': !util.selectedFileUrl[3],
+                          'fa-exchange': util.selectedFileUrl[3]
+                        }"
+                      ></i
+                    ></span>
+                    <span class="title"
+                      >{{ util.selectedFileUrl[3] ? "Change" : "Upload" }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="change_car_card mb-4">
+            <div class="head_wpr">
+              <div class="col-left">
+                <div class="col-change-blk">
+                  <span class="icon"
+                    ><img src="assets/images/car/3.png" alt=""
+                  /></span>
+                  <div class="search-input">
+                    <span class="wpr">
+                      {{ selectedCarModel?.brand?.name }}
+                      {{ selectedCarModel?.name }}
+                    </span>
+                    <small>{{ fuelType }}</small>
+                  </div>
+                </div>
+              </div>
+              <div class="col-right">
+                <a
+                  class="btn-change"
+                  href="javascript:void(0)"
+                  (click)="changeCarDetail()"
+                  >Change Car</a
+                >
+              </div>
+            </div>
+            <hr />
+            <div class="tc_wpr">
+              <ul class="tc_ul">
+                <li>
+                  Upload good quality pictures of your car from all 4 sides(Make
+                  sure the entire car is visible under good lighting)
+                </li>
+                <li>
+                  The DART AI assist will detect all required works and suggest
+                  services
+                </li>
+                <li>
+                  Select the services as per your requirements and get a free
+                  cost estimate
+                </li>
+              </ul>
+            </div>
+            <div class="btn_wpr">
+              <a
+                class="btn_estimate"
+                href="javascript:void(0);"
+                (click)="getEstimate()"
+                >Get Estimate</a
+              >
+            </div>
+          </div>
+
+          <div class="card_call position-relative">
+            <a
+              class="position-absolute top-0 end-0 bottom-0 start-0"
+              href="tel:+919980077990"
+            >
+            </a>
+            <div class="icon_col">
+              <span class="icon">
+                <span class="round"></span>
+                <img src="assets/images/car/4.png" alt="" class="img_icon" />
+              </span>
+            </div>
+            <div class="text_col">
+              Get a call from <br />
+              our experts
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-why-choose-us></app-why-choose-us>
+
+<app-faq></app-faq>
+<app-footer-nav></app-footer-nav>

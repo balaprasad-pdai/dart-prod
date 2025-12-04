@@ -1,0 +1,126 @@
+<!-- <div class="showspinner" *ngIf="utilService.showSpinnerData">
+
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div> -->
+
+<app-header [activeLink]="'Blogs'"></app-header>
+<section class="page-section top_section_padding">
+  <div class="container">
+    <span
+      class="p_dots"
+      data-sal="slide-up"
+      data-sal-duration="800"
+      data-sal-delay="100"
+      style="padding-top: 100px; top: 80px"
+      ><img src="assets/images/dots.svg"
+    /></span>
+    <span
+      class="arrow_slider"
+      style="position: absolute; right: 10px; width: 100px; top: 150px"
+      ><img src="../../assets/images/slider_arrow_1.svg"
+    /></span>
+    <div class="brand_text_wpr">
+      <h4>OUR BLOGS</h4>
+      <h2>
+        One of it's kind <br />
+        experience backed
+      </h2>
+    </div>
+
+    <div class="tag_wpr" *ngIf="blogcategory?.length">
+      <div
+        class="tag blog-category"
+        [ngClass]="{ 'selected-tag': selectedCategoryId === null }"
+        (click)="selectAll()"
+      >
+        <p for="">All</p>
+      </div>
+      <ng-container *ngFor="let item of blogcategory">
+        <div
+          class="tag blog-category"
+          [ngClass]="{ 'selected-tag': item.id === selectedCategoryId }"
+          (click)="getFilterName(item.id)"
+        >
+          {{ item?.name }}
+        </div>
+      </ng-container>
+    </div>
+    <ng-container *ngIf="!blogsFiltered.length && !blog?.length">
+      <span class="no-data-found"> No blogs found! </span>
+    </ng-container>
+    <div class="blog_list_wpr" *ngIf="blogsFiltered.length || blog?.length">
+      <div class="row">
+        <div
+          class="col-md-4"
+          *ngFor="
+            let blogItem of blogsFiltered
+              | paginate
+                : {
+                    id: 'blog_pagination',
+                    itemsPerPage: itemsPerpage,
+                    currentPage: page
+                  };
+            let i = index
+          "
+        >
+          <div class="card_blog" (click)="goToDetailsPage(blogItem?.id)">
+            <div class="img_blk">
+              <img
+                class="blogimg"
+                src="{{ blogItem?.image }}"
+                style="opacity: 1"
+              />
+            </div>
+            <div class="txt_blk">
+              <h4>{{ getCategoryName(blogItem?.categoryId) }}</h4>
+              <h2>{{ blogItem?.title }}</h2>
+              <div class="date">
+                {{ blogItem?.createdAt | date : "dd-MM-yyyy" }}
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-md-12">No blogs listed</div> -->
+      </div>
+      <div
+        class="d-flex justify-content-center paginate_wpr"
+        *ngIf="blogsFiltered.length"
+      >
+        <pagination-controls
+          id="blog_pagination"
+          (pageChange)="page = $event"
+          [maxSize]="5"
+          class="float-right"
+        ></pagination-controls>
+      </div>
+      <!-- <div
+        class="paginate_wpr"
+        *ngIf="selectedCategoryId ? blogsFiltered.length : blog.length"
+      >
+        <div class="paginate_navigation">
+          <ul class="pagination">
+            <li class="page-item">
+              <a class="page-link nav_btn" href="#">
+                <i class="fa fa-angle-left"></i> Previous</a
+              >
+            </li>
+            <li class="page-item">
+              <a class="page-link active" href="#">1</a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link nav_btn" href="#"
+                >Next <i class="fa fa-angle-right"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</section>
+
+<app-footer-nav></app-footer-nav>

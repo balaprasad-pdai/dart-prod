@@ -1,0 +1,77 @@
+<footer class="ft_wpr">
+  <div class="container">
+    <div class="subscribe_wpr">
+      <h3 class="title_head">
+        Subscribe to our <br />
+        newsletter
+      </h3>
+      <div class="txt_blk">
+        <input
+          type="text"
+          name=""
+          placeholder="Email Address"
+          class="text_blk"
+        />
+        <div class="btn_subscribe">Subscribe</div>
+      </div>
+    </div>
+    <hr />
+    <div class="wpr p-25">
+      <div class="row mt-25">
+        <div class="col-md-5 logo_wpr">
+          <div class="ft_logo-blk">
+            <img src="assets/images/logo_1.png" alt="" />
+          </div>
+          <!-- <div class="ft_company_info">
+            Let’s make a great <br />
+            design togerther
+          </div> -->
+        </div>
+        <div class="col-md-7">
+          <div class="row">
+            <div class="col-md-4">
+              <h5 class="ft_menu_title">Menu</h5>
+              <ng-container *ngFor="let links of footerLinks1">
+                <a
+                  (click)="navigateUrl(links)"
+                  href="javascript:void(0);"
+                  class="ft_menu"
+                  >{{ links?.name }}</a
+                >
+              </ng-container>
+            </div>
+            <div class="col-md-4">
+              <h5 class="ft_menu_title">Download</h5>
+              <ng-container *ngFor="let links of footerLinks2">
+                <a
+                  (click)="navigateUrl(links)"
+                  href="javascript:void(0);"
+                  class="ft_menu"
+                  >{{ links?.name }}</a
+                >
+              </ng-container>
+            </div>
+            <div class="col-md-4">
+              <h5 class="ft_menu_title">Office</h5>
+              <a href="" class="ft_menu"
+                >Popular Motor Ventures LLP,<br />
+                46/3A, Kudlu gate, 7th Mile,<br />
+                Hosur Road,Bangalore-560068<br /><br />
+                9980077990 / 8861420670</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="ft_bottom_wpr">
+      <div class="ft_text">
+        Copyright © 2023 POPULAR MOTOR VENTURES . All rights reserved
+      </div>
+      <!-- <div class="ft_text">
+        Designed and Developed by <a> POPULAR MOTOR VENTURES </a>
+      </div> -->
+    </div>
+  </div>
+</footer>
