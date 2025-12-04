@@ -1,0 +1,745 @@
+<header class="header-wpr" id="pageHeader" [ngClass]="{ active_1: loggedIn }">
+  <!-- <header class="header-wpr" id="pageHeader"> -->
+  <div class="container header-container">
+    <div class="logo-blk" (click)="navigateToUrl('/')">
+      <!--    <div class="hugbar" id="menu-hugbar">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div> -->
+      <img src="../../assets/images/logo.png" />
+    </div>
+
+    <div class="hugbar" id="menu-hugbar" (click)="rightHidden = !rightHidden">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <div class="nav-menus" id="nav-menus">
+      <div class="col-left">
+        <ul class="nav-ul">
+          <ng-container *ngFor="let nav of navLinks">
+            <li>
+              <a
+                [ngClass]="{ 'active-nav': nav.name === activeLink }"
+                href="javascript:void(0);"
+                (click)="navigateToUrl(nav?.link, nav)"
+                class="nav-link"
+              >
+                <span class="title">{{ nav.name }}</span>
+              </a>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+
+      <div class="col-right d-flex-center">
+        <a
+          *ngIf="citiesList?.length"
+          class="nav-link d-flex-center"
+          [ngClass]="{ active: !isCollapsed }"
+          (click)="toggleCollapse()"
+        >
+          <span class="icon"><i class="ti ti-location-pin"></i></span>
+          <span class="title">{{ selectedCity }}</span>
+          <span class="icon_angle_down">
+            <i *ngIf="!isCollapsed" class="ti ti-angle-up"></i>
+            <i *ngIf="isCollapsed" class="ti ti-angle-down"></i>
+          </span>
+        </a>
+        <div
+          class="back-drop-dropdown"
+          *ngIf="!isCollapsed"
+          (click)="isCollapsed = true"
+        ></div>
+        <div class="dropdown_popup" [ngClass]="{ shows: !isCollapsed }">
+          <div class="head_search_blk">
+            <!-- <div class="search_input">
+              <input
+                type="search"
+                name=""
+                placeholder="Search Car"
+                class="search_input_txt"
+                [(ngModel)]="modelSearchTerm"
+                (ngModelChange)="searchModel($event)"
+              />
+              <span class="search_icon"><i class="fa fa-search"></i></span>
+            </div> -->
+          </div>
+          <div class="body_search_blk">
+            <div
+              class="row_search_blk"
+              *ngFor="let city of citiesList"
+              (click)="selectCity(city)"
+            >
+              <span class="title" style="margin-bottom: 9px">{{
+                city.name
+              }}</span>
+            </div>
+            <!-- <div class="row_search_blk">
+                <span class="icon"
+                  ><img src="../../assets/images/car/1.png"
+                /></span>
+                <span class="title">Maruti Suzuki Alto K10</span>
+              </div>
+              <div class="row_search_blk">
+                <span class="icon"
+                  ><img src="../../assets/images/car/2.png"
+                /></span>
+                <span class="title">Hyundai Grand i10</span>
+              </div> -->
+          </div>
+        </div>
+
+        <div
+          *ngIf="!headerService.showAuthWpr"
+          class="nav-link-login_btn"
+          (click)="login()"
+        >
+          Login
+        </div>
+
+        <div class="auth_wpr" *ngIf="headerService.showAuthWpr">
+          <div class="nav-link-login_btn" (click)="navigateToUrl('/profile')">
+            My Profile
+          </div>
+          <!-- <span class="col_blk" (click)="navigateToUrl('/profile')">
+            <svg width="20" height="28" viewBox="0 0 20 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0.298828 27.0615C0.298828 24.4094 1.31728 21.8658 3.13013 19.9905C4.94298 18.1151 7.40174 17.0615 9.9655 17.0615C12.5293 17.0615 14.988 18.1151 16.8009 19.9905C18.6137 21.8658 19.6322 24.4094 19.6322 27.0615H17.2155C17.2155 25.0724 16.4517 23.1647 15.092 21.7582C13.7324 20.3517 11.8883 19.5615 9.9655 19.5615C8.04268 19.5615 6.19861 20.3517 4.83897 21.7582C3.47933 23.1647 2.71549 25.0724 2.71549 27.0615H0.298828ZM9.9655 15.8115C5.95987 15.8115 2.71549 12.4553 2.71549 8.31152C2.71549 4.16777 5.95987 0.811523 9.9655 0.811523C13.9711 0.811523 17.2155 4.16777 17.2155 8.31152C17.2155 12.4553 13.9711 15.8115 9.9655 15.8115ZM9.9655 13.3115C12.6359 13.3115 14.7988 11.074 14.7988 8.31152C14.7988 5.54902 12.6359 3.31152 9.9655 3.31152C7.29508 3.31152 5.13216 5.54902 5.13216 8.31152C5.13216 11.074 7.29508 13.3115 9.9655 13.3115Z"
+                fill="black" />
+            </svg>
+          </span> -->
+          <span
+            class="col_blk"
+            (click)="checkCartAndnavigateToUrl('/bookings/details')"
+          >
+            <svg
+              width="30"
+              height="31"
+              viewBox="0 0 30 31"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M23.8107 28.1876H6.11862C5.82653 28.1876 5.57617 27.9286 5.57617 27.6265V9.9718C5.57617 9.66964 5.82653 9.41064 6.11862 9.41064H23.8107C24.1028 9.41064 24.3531 9.66964 24.3531 9.9718V27.6265C24.3531 27.9286 24.1028 28.1876 23.8107 28.1876Z"
+                stroke="black"
+                stroke-width="2"
+                stroke-miterlimit="10"
+              />
+              <path
+                d="M9.54102 9.41037C9.54102 2.93555 14.9655 2.93555 14.9655 2.93555C14.9655 2.93555 20.3899 2.93555 20.3899 9.41037"
+                stroke="black"
+                stroke-width="2"
+                stroke-miterlimit="10"
+              />
+            </svg>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <div><i class="fa-solid fa-chevron-left"></i></div> -->
+  <div class="s-options" style="height: 100px; background-color: #fff;padding: 0 100px;" *ngIf="showServices">
+    <owl-carousel-o [options]="customOptions">
+
+      <ng-container *ngFor="let slide of filteredServicesList; let i=index;">
+        <ng-template class="slide" carouselSlide [id]="slide.id">
+          <div (click)="selectServiceAndNavigate(slide)">
+            <img [src]="slide.logoUrl" [alt]="slide.name" [title]="slide.name" width="20">
+            <div class="slide-name">{{slide.name}}</div>
+          </div>
+          
+        </ng-template>
+      </ng-container>
+  
+    </owl-carousel-o> 
+  </div>
+</header>
+
+<div
+  class="menu-overlay"
+  id="menu-overlay"
+  [ngClass]="{ active: !rightHidden && smallScreen }"
+  (click)="rightHidden = !rightHidden"
+></div>
+<aside
+  class="sidebar-left"
+  id="sidebar-left"
+  [ngClass]="{ 'show-sidebar': !rightHidden && smallScreen }"
+>
+  <div class="top-logo_wpr">
+    <span class="img_bl"
+      ><img
+        src="../../assets/images/logo.png"
+        style="width: 130px; height: 50px; margin-right: 10px"
+    /></span>
+    <!-- <span class="logo-txt">DART</span> -->
+  </div>
+
+  <ul class="sidebar-menu-ul">
+    <ng-container *ngFor="let nav of navLinks">
+      <li>
+        <a
+          class="menu-link"
+          [ngClass]="{ active: nav.name === activeLink }"
+          href="javascript:void(0);"
+          (click)="navigateToUrl(nav?.link, nav); rightHidden = !rightHidden"
+        >
+          <span class="icon-blk"><i class="{{ nav?.icon }}"></i></span>
+          <span class="m-title">{{ nav?.name }}</span>
+        </a>
+      </li>
+    </ng-container>
+  </ul>
+  <hr />
+
+  <ul class="sidebar-menu-ul">
+    <li *ngIf="headerService.showAuthWpr" (click)="navigateToUrl('/profile')">
+      <a class="menu-link">
+        <span class="icon-blk"><i class="fa fa-user"></i></span>
+        <span class="m-title">Profile</span>
+      </a>
+    </li>
+    <li *ngIf="!headerService.showAuthWpr" (click)="login()">
+      <a class="menu-link">
+        <span class="icon-blk"
+          ><i class="fa-solid fa-right-from-bracket"></i
+        ></span>
+        <span class="m-title">Login</span>
+      </a>
+    </li>
+    <li
+      *ngIf="headerService.showAuthWpr"
+      (click)="navigateToUrl('/bookings/details')"
+    >
+      <a class="menu-link">
+        <span class="icon-blk"><i class="fa-solid fa-file-pen"></i></span>
+        <span class="m-title">Booking Details</span>
+      </a>
+    </li>
+    <li>
+      <a class="menu-link d-flex" (click)="showCitySubmenu()">
+        <span class="icon-blk"><i class="fa-solid fa-location-dot"></i></span>
+        <span class="title">{{ selectedCity }}</span>
+        <span class="icon_angle_down">
+          <i *ngIf="showSubmenu" class="ti ti-angle-up"></i>
+          <i *ngIf="!showSubmenu" class="ti ti-angle-down"></i>
+        </span>
+      </a>
+
+      <div
+        class="sub-menu-blk"
+        [ngClass]="{ active: showSubmenu }"
+        *ngFor="let city of citiesList"
+      >
+        <a
+          class="sub-menu-link"
+          (click)="selectCity(city); showSubmenu = !showSubmenu"
+          >{{ city?.name }}</a
+        >
+      </div>
+    </li>
+  </ul>
+</aside>
+
+<!-- Modal -->
+<div class="modal fade" id="ModalPhone" role="dialog">
+  <div class="modal-dialog modal-md">
+    <!-- Modal content-->
+    <form [formGroup]="phoneForm">
+      <div class="modal-content">
+        <div class="modal-login-popup-wpr">
+          <div class="m-header">
+            <div class="close-btn" (click)="closeModal()">
+              <button type="button" class="close" data-dismiss="modal">
+                <i class="fa fa-close"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="login-form-wpr">
+            <div class="input-group-wpr">
+              <h2>
+                Enter your <br />
+                Mobile number
+              </h2>
+              <label class="label_txt"
+                >We will send an OTP to this number.</label
+              >
+              <div class="input-phone-wpr-blk">
+                <small class="mob-no">Mobile Number</small>
+                <span class="country-code-blk"
+                  ><img
+                    src="../../assets/images/in.svg"
+                    class="flag-img"
+                    alt=""
+                  />
+                  <span style="padding-right: 5px">+91</span></span
+                >
+                <input
+                  type="text"
+                  class="input-txt-blk"
+                  placeholder="Mobile number"
+                  formControlName="username"
+                  name="name"
+                />
+                <!-- <span class="verify-blk"><i class="fa fa-check"></i></span> -->
+              </div>
+              <!-- <div class="input-phone-wpr">
+                <small>Mobile Number</small>
+                <span class="country-code"><img src="../../assets/images/in.svg" width="20px" height="20px" alt="" />
+                  <span style="padding-right: 5px">+91</span></span>
+                <input type="text" id="mobile_code" class="input-txt" placeholder="Phone Number"
+                  formControlName="username" name="name" />
+              </div> -->
+
+              <!-- <div class="accept_wpr">
+                <input type="checkbox" id="accept" name="accept" value="accept" />
+                <label for="accept"> Get updates over WhatsApp</label>
+              </div> -->
+
+              <div class="m-btn-wpr">
+                <div class="btn-submit" (click)="generateOtp()">Continue</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- Modal -->
+
+<!-- {{utilService.showSpinnerData}} -->
+<div class="showspinner" *ngIf="utilService.showSpinnerData">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+
+<div class="modal fade" id="ModalOTP" role="dialog">
+  <!-- [ngStyle]="{ display: displayOtp }" -->
+  <div class="modal-dialog modal-md">
+    <!-- Modal content-->
+
+    <div class="modal-content">
+      <div class="modal-login-popup-wpr">
+        <div class="m-header">
+          <div class="close-btn" (click)="closeModal()">
+            <button type="button" class="close" data-dismiss="modal">
+              <i class="fa fa-close"></i>
+            </button>
+          </div>
+        </div>
+        <form [formGroup]="phoneForm">
+          <div class="login-form-wpr" id="otp_step_1">
+            <div class="input-group-wpr">
+              <h2>OTP Verification</h2>
+              <label class="label_txt_1"
+                ><span class="otp-text">An OTP has been sent to</span> <br />
+                <span class="mobile_number"
+                  >+91 {{ getPhoneForm["username"].value }}
+                  <span style="cursor: pointer" (click)="goToLoginModal()"
+                    ><i class="fa fa-edit"></i></span
+                ></span>
+              </label>
+
+              <div class="otp-input-blk">
+                <ngx-otp-input
+                  [config]="otpInputConfig"
+                  (otpchange)="handleOtpChange($event)"
+                  (fill)="handleFillEvent($event)"
+                >
+                </ngx-otp-input>
+                <!-- <input type="text" name="" class="otp-txt" max="1" />
+                            <input type="text" name="" class="otp-txt" max="1" />
+                            <input type="text" name="" class="otp-txt" max="1" />
+                            <input type="text" name="" class="otp-txt" max="1" />
+                            <input type="text" name="" class="otp-txt" max="1" /> -->
+              </div>
+              <div class="resend-blk">
+                <a (click)="resendOtp()"> Resend OTP </a>
+              </div>
+            </div>
+            <div class="m-btn-wpr">
+              <div class="btn-submit" (click)="verifyOtp()">Verify</div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="ModalLoggedin" role="dialog">
+  <!-- [ngStyle]="{ display: displayOtp }" -->
+  <div class="modal-dialog modal-md">
+    <!-- Modal content-->
+
+    <div class="modal-content">
+      <div class="modal-login-popup-wpr">
+        <div class="m-header">
+          <div class="close-btn" (click)="closeModal()">
+            <button type="button" class="close" data-dismiss="modal">
+              <i class="fa fa-close"></i>
+            </button>
+          </div>
+        </div>
+        <div class="login-form-wpr" id="otp_step_2">
+          <div class="input-group-wpr">
+            <div class="status_icon_wpr">
+              <svg
+                width="116"
+                height="116"
+                viewBox="0 0 116 116"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M95.8543 50.7494L94.0335 55.2536C93.4585 56.7869 93.4585 58.4161 94.0335 59.9494L95.8543 64.4536C96.9085 67.1369 96.046 70.2036 93.6501 71.9286L89.6251 74.7077C88.2835 75.6661 87.421 77.1036 87.0376 78.6369L86.1751 83.4286C85.6001 86.3036 83.2043 88.4119 80.3293 88.5077L75.4418 88.6994C73.8126 88.7952 72.2793 89.4661 71.1293 90.6161L67.7751 94.1619C65.7626 96.2702 62.6001 96.7494 60.1085 95.3119L55.8918 92.8202C54.4543 91.9577 52.8251 91.7661 51.196 92.1494L46.4043 93.2994C43.6251 93.9702 40.6543 92.6286 39.3126 90.0411L37.1085 85.6327C36.3418 84.1952 35.096 83.0452 33.5626 82.5661L28.9626 81.0327C26.1835 80.0744 24.4585 77.3911 24.746 74.5161L25.2251 69.6286C25.4168 67.9994 24.9376 66.3702 23.8835 65.1244L20.8168 61.2911C18.996 58.9911 18.996 55.8286 20.8168 53.5286L23.8835 49.6952C24.9376 48.4494 25.4168 46.8202 25.2251 45.1911L24.746 40.3036C24.4585 37.4286 26.1835 34.7452 28.9626 33.7869L33.5626 32.2536C35.096 31.7744 36.3418 30.6244 37.1085 29.1869L39.3126 24.7786C40.6543 22.1911 43.5293 20.8494 46.4043 21.5202L51.196 22.6702C52.7293 23.0536 54.4543 22.8619 55.8918 21.9994L60.1085 19.5077C62.6001 18.0702 65.7626 18.4536 67.7751 20.6577L71.1293 24.2036C72.2793 25.3536 73.8126 26.1202 75.4418 26.1202L80.3293 26.3119C83.2043 26.4077 85.696 28.5161 86.1751 31.3911L87.0376 36.1827C87.3251 37.8119 88.2835 39.2494 89.6251 40.1119L93.6501 42.8911C96.046 44.9994 97.0043 48.0661 95.8543 50.7494Z"
+                  fill="#00D566"
+                />
+                <g opacity="0.15">
+                  <path
+                    d="M42.0918 89.7536L39.8876 85.3452C39.121 83.9077 37.8751 82.7577 36.3418 82.2786L31.7418 80.7452C28.9626 79.7869 27.2376 77.1036 27.5251 74.2286L28.0043 69.3411C28.196 67.7119 27.7168 66.0827 26.6626 64.8369L23.596 61.0036C21.7751 58.7036 21.7751 55.5411 23.596 53.2411L26.6626 49.4077C27.7168 48.1619 28.196 46.5327 28.0043 44.9036L27.5251 40.0161C27.2376 37.1411 28.9626 34.4577 31.7418 33.4994L36.3418 31.9661C37.8751 31.4869 39.121 30.3369 39.8876 28.8994L42.0918 24.4911C42.8585 22.9577 44.2001 21.9036 45.6376 21.4244C43.0501 21.0411 40.4626 22.3827 39.3126 24.7786L37.1085 29.1869C36.3418 30.6244 35.096 31.7744 33.5626 32.2536L28.9626 33.7869C26.1835 34.7452 24.4585 37.4286 24.746 40.3036L25.2251 45.1911C25.4168 46.8202 24.9376 48.4494 23.8835 49.6952L20.8168 53.5286C18.996 55.8286 18.996 58.9911 20.8168 61.2911L23.8835 65.1244C24.9376 66.3702 25.4168 67.9994 25.2251 69.6286L24.746 74.5161C24.4585 77.3911 26.1835 80.0744 28.9626 81.0327L33.5626 82.5661C35.096 83.0452 36.3418 84.1952 37.1085 85.6327L39.3126 90.0411C40.6543 92.6286 43.5293 93.9702 46.4043 93.2994L46.9793 93.2036C44.871 92.8202 43.0501 91.6702 42.0918 89.7536Z"
+                    fill="black"
+                  />
+                  <path
+                    d="M58.5747 21.7119L62.7913 19.2202C63.1747 19.0286 63.558 18.8369 63.9413 18.7411C62.5997 18.5494 61.1622 18.8369 60.0122 19.5077L55.7955 21.9994C55.4122 22.1911 55.0288 22.3827 54.6455 22.4786C55.9872 22.6702 57.3288 22.4786 58.5747 21.7119Z"
+                    fill="black"
+                  />
+                  <path
+                    d="M78.1249 88.3161C77.6457 88.3161 77.1665 88.4119 76.7832 88.5077L80.2332 88.3161C80.7124 88.3161 81.0957 88.2202 81.5749 88.1244L78.1249 88.3161Z"
+                    fill="black"
+                  />
+                  <path
+                    d="M62.7922 94.9286L58.5755 92.4369C57.138 91.5744 55.5089 91.3827 53.8797 91.7661L53.3047 91.8619C54.1672 91.9577 54.9339 92.2452 55.7005 92.6286L59.9172 95.1202C61.5464 96.0786 63.3672 96.1744 65.0922 95.5994C64.3255 95.5994 63.5589 95.4077 62.7922 94.9286Z"
+                    fill="black"
+                  />
+                </g>
+                <path
+                  d="M42.667 51.5161L54.6462 65.2202L79.1795 45.4786"
+                  fill="#00D566"
+                />
+                <path
+                  d="M51.7711 72.3119C50.4294 72.3119 49.0877 71.7369 48.1294 70.6827L36.1502 56.9786C34.4252 54.9661 34.6169 51.9952 36.5336 50.1744C38.5461 48.4494 41.5169 48.6411 43.3377 50.5577L52.3461 60.8119L73.3336 43.9452C75.3461 42.3161 78.4127 42.6036 80.0419 44.7119C81.6711 46.8202 81.3836 49.7911 79.2752 51.4202L54.7419 71.2577C53.8794 71.9286 52.8252 72.3119 51.7711 72.3119Z"
+                  fill="white"
+                />
+              </svg>
+            </div>
+            <h2>
+              OTP Verified <br />
+              Best Prices Unlocked!
+            </h2>
+            <label class="label_txt"
+              >Your OTP has been successfully verified. Go head and explore all
+              the best services at amazing prices!</label
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="ModalCity" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+    <!-- <ng-container *ngIf="headerService.showModal == 1"> -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Select Your City</h2>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="modalCity.hide(); closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="container modal-city">
+          <div class="row">
+            <div
+              class="col-md-3 itemcity items-center min-width-175"
+              *ngFor="let city of citiesList"
+              (click)="selectCityModel(city)"
+            >
+              <div class="cityimg">
+                <img src="{{ city.logoUrl }}" alt="" />
+              </div>
+              <h6>
+                {{ city.name }}
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- </ng-container> -->
+  </div>
+</div>
+<div class="modal fade" id="ModalManufacture" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <!-- <ng-container *ngIf="headerService.showModal == 2"> -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">
+          Select Your Car Manufacture
+        </h2>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="modalManufacture.hide(); closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="head_search_blks">
+          <!-- <div class="search_input">
+                <input
+                  type="search"
+                  name=""
+                  placeholder="Search brand"
+                  class="search_input_txt"
+                  [(ngModel)]="modelSearchTerm"
+                  (ngModelChange)="searchBrand($event)"
+                />
+                <span class="search_icons"><i class="fa fa-search"></i></span>
+              </div> -->
+        </div>
+        <div class="container modal-city">
+          <div class="row">
+            <div
+              *ngIf="!brandFiltered?.length"
+              class="col-md-12 itemcity items-center p-2 my-2"
+            >
+              <span class="err_msg">No Car Manufacture Found</span>
+            </div>
+            <div
+              class="col-md-3 col-4 itemcity items-center p-2 my-1"
+              *ngFor="let brand of brandFiltered"
+              (click)="selectCarBrand(brand)"
+            >
+              <div class="card-border car-manufacture-card">
+                <div class="cityimg">
+                  <img src="{{ brand.logoUrl }}" alt="" />
+                </div>
+                <!-- <h6>
+                      {{ brand.name }}
+                    </h6> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- </ng-container> -->
+  </div>
+</div>
+<div class="modal fade" id="ModalCar" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+
+    <!-- <ng-container *ngIf="headerService.showModal == 3"> -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Select Your Car</h2>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="modalCar.hide(); closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="head_search_blks">
+          <div class="search_input">
+            <input
+              type="search"
+              name=""
+              placeholder="Search Car"
+              class="search_input_txt"
+              [(ngModel)]="modelSearchTerm"
+              (ngModelChange)="searchModel($event)"
+            />
+            <span class="search_icons"><i class="fa fa-search"></i></span>
+          </div>
+        </div>
+        <div class="container modal-city">
+          <div class="row">
+            <div
+              *ngIf="!carsFiltered?.length"
+              class="col-md-12 itemcity items-center p-2 my-2"
+            >
+              <span class="err_msg">No Cars Found</span>
+            </div>
+            <ng-container *ngFor="let car of carsFiltered; let ind = index">
+              <div
+                class="col-md-3 col-4 itemcity items-center p-2 my-1"
+                *ngIf="ind < 12"
+                (click)="selectCarModel(car)"
+              >
+                <div class="card-border">
+                  <div class="cityimg">
+                    <img src="{{ car.sizedPhoto }}" alt="" />
+                  </div>
+                  <h6>
+                    {{ car.name }}
+                  </h6>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- </ng-container> -->
+  </div>
+</div>
+<div class="modal fade" id="ModalFuel" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <!-- Modal content-->
+
+    <!-- <ng-container *ngIf="headerService.showModal == 4"> -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Select Fuel Type</h2>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+          (click)="modalFuel.hide(); closeModal()"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-city max-width-550">
+          <div class="row row-cols-1 row-cols-sm-4">
+            <div class="col-md-3 itemcar items-center">
+              <div class="carimg">
+                <img src="{{ selectedCar?.sizedPhoto }}" alt="" />
+              </div>
+              <h6>
+                {{ selectedCar?.name }}
+              </h6>
+            </div>
+          </div>
+          <div class="itembutton">
+            <a
+              href="javascript:void(0)"
+              class="change-car"
+              (click)="editCarModel(selectedCar)"
+              >Change Car</a
+            >
+            <!-- <button class="btn-primary btn-edit-car" (click)="editCarModel(selectedCar)">
+                      Edit Car
+                    </button> -->
+          </div>
+          <div class="row justify-content-center">
+            <ng-container *ngFor="let fuel of utilService.fuels">
+              <div
+                class="col itemcity items-center p-3 my-3 fuel-col"
+                *ngIf="getFuelType(fuel.name)"
+                (click)="selectFuelType(fuel)"
+              >
+                <div class="card-border border-white">
+                  <div class="fuelimg">
+                    <img src="{{ fuel.image }}" alt="" />
+                  </div>
+                  <h6>
+                    {{ fuel.name }}
+                  </h6>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- </ng-container> -->
+  </div>
+</div>
+<div
+  class="backdrop"
+  [ngClass]="{
+    'show-modal': utilService.showAboutUsModal,
+    hide: !utilService.showAboutUsModal
+  }"
+></div>
+<div
+  class="modal fade"
+  style="
+    transition: opacity 0.15s linear;
+    z-index: 10001;
+    position: fixed;
+    top: 100px;
+  "
+  id="ModalLogin"
+  role="dialog"
+  [ngClass]="{ 'show-modal': utilService.showAboutUsModal }"
+>
+  <div class="modal-dialog modal-md">
+    <!-- Modal content-->
+    <form>
+      <div class="modal-content">
+        <div class="modal-login-popup-wpr">
+          <div class="m-header">
+            <h2 class="text-center">About Us</h2>
+            <div
+              class="close-btn"
+              (click)="utilService.showAboutUsModal = false"
+            >
+              <button type="button" class="close" data-dismiss="modal">
+                <i class="fa fa-close"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="login-form-wpr">
+            <div class="input-group-wpr">
+              <div class="about_us_detail">
+                <p>
+                  The Prestigious Popular Group proudly presents its latest
+                  venture - Popular Motor Ventures LLP - a cutting-edge service
+                  and repair center catering to multi-brand vehicles. Our
+                  unwavering commitment is to deliver unparalleled service to
+                  our esteemed clients in the quickest possible time.
+                </p>
+                <p>
+                  To ensure our clients' convenience, we have launched a
+                  user-friendly website named DART.repair. This platform allows
+                  them to effortlessly schedule appointments and take a virtual
+                  tour of our top-notch facilities and services.
+                </p>
+                <p>
+                  At Popular Motor Ventures LLP, safeguarding our clients'
+                  privacy is of utmost importance. Hence, we have implemented a
+                  secure and seamless one-time password system, accessible
+                  through their mobile devices. This authentication process
+                  allows them to access the website, where they can explore
+                  their vehicle details and engage with us authentically.
+                </p>
+                <p>
+                  Join us at Popular Motor Ventures LLP, where excellence meets
+                  authenticity for an exceptional client experience.
+                </p>
+              </div>
+
+              <div class="m-btn-wpr" style="margin: 8px 0">
+                <div
+                  class="btn-submit"
+                  (click)="utilService.showAboutUsModal = false"
+                >
+                  Close
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

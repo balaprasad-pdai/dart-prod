@@ -1,0 +1,104 @@
+<app-header></app-header>
+<section class="page-section top_section_padding">
+  <div class="container">
+    <span
+      class="p_dots"
+      data-sal="slide-up"
+      data-sal-duration="800"
+      data-sal-delay="100"
+      style="padding-top: 100px"
+      ><img src="assets/images/dots.svg"
+    /></span>
+    <span
+      class="arrow_slider"
+      style="position: absolute; right: 80px; width: 100px; top: 150px"
+      ><img src="../../../assets/images/slider_arrow_1.svg"
+    /></span>
+
+    <div class="blog_list_wpr blog_details_wpr">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+          <div class="card_blog">
+            <div class="img_blk">
+              <img
+                class="bannerimg"
+                src="{{ blog?.image }}"
+                style="opacity: 1"
+              />
+            </div>
+            <div class="txt_blk">
+              <h4>{{ getCategoryName(blog?.categoryId) }}</h4>
+              <h2>{{ blog?.title }}</h2>
+              <div class="date">
+                {{ blog?.createdAt | date : "dd-MM-yyyy" }}
+              </div>
+
+              <div class="desc">
+                <!-- <p>
+                  {{ blog?.description }}
+                </p> -->
+
+                <p [innerHTML]="blog?.content"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="page-section">
+  <div class="container container-full-wpr">
+    <div
+      class="about_text_wpr"
+      data-sal="slide-up"
+      data-sal-duration="800"
+      data-sal-delay="100"
+    >
+      <h4>OUR BLOGS</h4>
+      <h2>Related Blogs</h2>
+    </div>
+
+    <div class="services_wpr" id="blog-carousel">
+      <owl-carousel-o
+        [options]="blogsOptions"
+        (dragging)="startDragging($event.dragging)"
+      >
+        <ng-container *ngFor="let item of blogsList">
+          <ng-container *ngIf="item.id != blog.id">
+            <ng-template carouselSlide>
+              <div
+                class="card_blog carditem"
+                (click)="goToDetailsPage(item?.id)"
+              >
+                <div class="img_blk">
+                  <img class="itemimg" src="{{ item?.image }}" />
+                </div>
+                <div class="txt_blk">
+                  <h4>{{ getCategoryName(item?.categoryId) }}</h4>
+                  <h2>{{ item?.title }}</h2>
+                  <div class="date">
+                    {{ item?.createdAt | date : "dd-MM-yyyy" }}
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ng-container>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+    <div class="ft_btn_wpr" (click)="viewAll()">
+      <div class="btn_page">View All</div>
+    </div>
+
+    <span
+      class="arrow_slider"
+      style="position: absolute; right: 80px; width: 100px; bottom: 80px"
+      ><img src="assets/images/slider_arrow_1.svg"
+    /></span>
+  </div>
+</section>
+
+<app-footer-nav></app-footer-nav>

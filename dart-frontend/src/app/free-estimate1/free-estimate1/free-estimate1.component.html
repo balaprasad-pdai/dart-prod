@@ -1,0 +1,450 @@
+<app-header [activeLink]="'Free Estimate'"></app-header>
+<section
+  class="page-section top_section_padding bg_gray"
+  style="margin-top: 55px"
+>
+  <div class="container">
+    <span class="p_dots" style="padding-top: 100px"
+      ><img src="assets/images/dots.svg"
+    /></span>
+    <span
+      class="arrow_slider"
+      style="position: absolute; right: 80px; width: 100px; top: 150px"
+    ></span>
+    <div class="brand_text_wpr mb-5">
+      <h4>FREE ESTIMATE</h4>
+      <h2>
+        Upload photos and get AI estimate <br />
+        for your {{ selectedCarModel?.brand?.name }}
+        {{ selectedCarModel?.name }} in {{ selectedCity }}
+      </h2>
+    </div>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="row">
+            <ng-container *ngFor="let panel of selectedPanelList">
+              <div class="col-md-6">
+                <div class="estimate_car_card">
+                  <div class="col-change-blk">
+                    <span class="icon"
+                      ><img alt="" src="{{ panel?.carPanel?.sizedPhoto }}"
+                    /></span>
+                    <div class="search-input mx-3 px-3">
+                      <span class="wpr"> {{ panel?.carPanel?.name }} </span>
+                      <small>{{
+                        getPanelSelected(panel, "Amount") | currency : "INR"
+                      }}</small>
+                    </div>
+                  </div>
+                  <hr />
+                  <div class="check_list">
+                    <ul>
+                      <ng-container
+                        *ngFor="
+                          let panelService of panel?.selectedPanelWorkList
+                        "
+                      >
+                        <li>
+                          <div class="info_wpr">
+                            <div class="col_info">
+                              <span
+                                class="check_icon"
+                                (click)="selectServiceWork(panelService, false)"
+                                [ngClass]="{
+                                  active: getPanelSelected(panelService, '')
+                                }"
+                              ></span>
+                              <span class="title">{{
+                                getTypeOfWorkName(panelService.typeOfWorkId)
+                              }}</span>
+                            </div>
+                            <div class="col_amount">
+                              {{
+                                panelService?.slashedPrice
+                                  ? panelService?.slashedPrice
+                                  : panelService?.price
+                              }}
+                            </div>
+                          </div>
+                        </li>
+                      </ng-container>
+
+                      <li>
+                        <div class="info_wpr">
+                          <div class="col_info">
+                            <span
+                              class="check_icon"
+                              (click)="selectServiceWork(panel, true)"
+                              [ngClass]="{
+                                active: getPanelNoDamageSelected(panel)
+                              }"
+                            ></span>
+                            <span class="title">No Damage</span>
+                          </div>
+                          <div class="col_amount">NA</div>
+                        </div>
+                      </li>
+
+                      <!--  <li>
+                        <div class="info_wpr">
+                          <div class="col_info">
+                            <span class="check_icon"></span>
+                            <span class="title">Remove Scratches</span>
+                          </div>
+                          <div class="col_amount">₹ 2599.00</div>
+                        </div>
+                      </li>
+
+                      <li>
+                        <div class="info_wpr">
+                          <div class="col_info">
+                            <span class="check_icon"></span>
+                            <span class="title">No Damage</span>
+                          </div>
+                          <div class="col_amount">₹ 2599.00</div>
+                        </div>
+                      </li>
+
+                      <li>
+                        <div class="info_wpr">
+                          <div class="col_info">
+                            <span class="check_icon"></span>
+                            <span class="title">Replace</span>
+                          </div>
+                          <div class="col_amount">NA</div>
+                        </div>
+                      </li> -->
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+
+            <!-- <div class="col-md-6">
+              <div class="estimate_car_card">
+                <div class="col-change-blk">
+                  <span class="icon"
+                    ><img src="assets/images/car_1.png"
+                  /></span>
+                  <div class="search-input">
+                    <span class="wpr"> Front Bumper </span>
+                    <small>₹ 2,099</small>
+                  </div>
+                </div>
+                <hr />
+                <div class="check_list">
+                  <ul>
+                    <li>
+                      <div class="info_wpr">
+                        <div class="col_info">
+                          <span class="check_icon active"></span>
+                          <span class="title">Remove Dents</span>
+                        </div>
+                        <div class="col_amount">₹ 2599.00</div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="info_wpr">
+                        <div class="col_info">
+                          <span class="check_icon"></span>
+                          <span class="title">Remove Scratches</span>
+                        </div>
+                        <div class="col_amount">₹ 2599.00</div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="info_wpr">
+                        <div class="col_info">
+                          <span class="check_icon"></span>
+                          <span class="title">No Damage</span>
+                        </div>
+                        <div class="col_amount">₹ 2599.00</div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="info_wpr">
+                        <div class="col_info">
+                          <span class="check_icon"></span>
+                          <span class="title">Replace</span>
+                        </div>
+                        <div class="col_amount">NA</div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- <div class="col-md-6">
+              <div class="estimate_car_card">
+                <div class="col-change-blk">
+                  <span class="icon"
+                    ><img src="assets/images/car_1.png"
+                  /></span>
+                  <div class="search-input">
+                    <span class="wpr"> Front Bumper </span>
+                    <small>₹ 2,099</small>
+                  </div>
+                </div>
+                <hr />
+                <div class="check_list">
+                  <ul>
+                    <li>
+                      <div class="info_wpr">
+                        <div class="col_info">
+                          <span class="check_icon active"></span>
+                          <span class="title">Remove Dents</span>
+                        </div>
+                        <div class="col_amount">₹ 2599.00</div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="info_wpr">
+                        <div class="col_info">
+                          <span class="check_icon"></span>
+                          <span class="title">Remove Scratches</span>
+                        </div>
+                        <div class="col_amount">₹ 2599.00</div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="info_wpr">
+                        <div class="col_info">
+                          <span class="check_icon"></span>
+                          <span class="title">No Damage</span>
+                        </div>
+                        <div class="col_amount">₹ 2599.00</div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="info_wpr">
+                        <div class="col_info">
+                          <span class="check_icon"></span>
+                          <span class="title">Replace</span>
+                        </div>
+                        <div class="col_amount">NA</div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- <div class="col-md-6">
+              <div class="estimate_car_card">
+                <div class="col-change-blk">
+                  <span class="icon"
+                    ><img src="assets/images/car_1.png"
+                  /></span>
+                  <div class="search-input">
+                    <span class="wpr"> Front Bumper </span>
+                    <small>₹ 2,099</small>
+                  </div>
+                </div>
+                <hr />
+                <div class="check_list">
+                  <ul>
+                    <li>
+                      <div class="info_wpr">
+                        <div class="col_info">
+                          <span class="check_icon active"></span>
+                          <span class="title">Remove Dents</span>
+                        </div>
+                        <div class="col_amount">₹ 2599.00</div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="info_wpr">
+                        <div class="col_info">
+                          <span class="check_icon"></span>
+                          <span class="title">Remove Scratches</span>
+                        </div>
+                        <div class="col_amount">₹ 2599.00</div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="info_wpr">
+                        <div class="col_info">
+                          <span class="check_icon"></span>
+                          <span class="title">No Damage</span>
+                        </div>
+                        <div class="col_amount">₹ 2599.00</div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="info_wpr">
+                        <div class="col_info">
+                          <span class="check_icon"></span>
+                          <span class="title">Replace</span>
+                        </div>
+                        <div class="col_amount">NA</div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- <div class="col-md-6">
+              <div class="estimate_car_card">
+                <div class="col-change-blk">
+                  <span class="icon"
+                    ><img src="assets/images/car_1.png"
+                  /></span>
+                  <div class="search-input">
+                    <span class="wpr"> Front Bumper </span>
+                    <small>₹ 2,099</small>
+                  </div>
+                </div>
+                <hr />
+                <div class="check_list">
+                  <ul>
+                    <li>
+                      <div class="info_wpr">
+                        <div class="col_info">
+                          <span class="check_icon active"></span>
+                          <span class="title">Remove Dents</span>
+                        </div>
+                        <div class="col_amount">₹ 2599.00</div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="info_wpr">
+                        <div class="col_info">
+                          <span class="check_icon"></span>
+                          <span class="title">Remove Scratches</span>
+                        </div>
+                        <div class="col_amount">₹ 2599.00</div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="info_wpr">
+                        <div class="col_info">
+                          <span class="check_icon"></span>
+                          <span class="title">No Damage</span>
+                        </div>
+                        <div class="col_amount">₹ 2599.00</div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="info_wpr">
+                        <div class="col_info">
+                          <span class="check_icon"></span>
+                          <span class="title">Replace</span>
+                        </div>
+                        <div class="col_amount">NA</div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div> -->
+
+            <!-- <div class="col-md-6">
+              <div class="estimate_car_card">
+                <div class="col-change-blk">
+                  <span class="icon"
+                    ><img src="assets/images/car_1.png"
+                  /></span>
+                  <div class="search-input">
+                    <span class="wpr"> Front Bumper </span>
+                    <small>₹ 2,099</small>
+                  </div>
+                </div>
+                <hr />
+                <div class="check_list">
+                  <ul>
+                    <li>
+                      <div class="info_wpr">
+                        <div class="col_info">
+                          <span class="check_icon active"></span>
+                          <span class="title">Remove Dents</span>
+                        </div>
+                        <div class="col_amount">₹ 2599.00</div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="info_wpr">
+                        <div class="col_info">
+                          <span class="check_icon"></span>
+                          <span class="title">Remove Scratches</span>
+                        </div>
+                        <div class="col_amount">₹ 2599.00</div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="info_wpr">
+                        <div class="col_info">
+                          <span class="check_icon"></span>
+                          <span class="title">No Damage</span>
+                        </div>
+                        <div class="col_amount">₹ 2599.00</div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="info_wpr">
+                        <div class="col_info">
+                          <span class="check_icon"></span>
+                          <span class="title">Replace</span>
+                        </div>
+                        <div class="col_amount">NA</div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <div
+          class="col-md-4"
+          *ngIf="
+            activeCartList?.id && activeCartList?.orderMeta?.package?.length
+          "
+        >
+          <app-selected-packages
+            [activeCartList]="activeCartList"
+            [page]="'free-estimate'"
+            [orderParams]="activeCartList"
+            (buttonClicked)="onButtonClicked($event)"
+            [packageCloseBtn]="true"
+          ></app-selected-packages>
+
+          <div class="card_call" *ngIf="false">
+            <div class="icon_col">
+              <span class="icon">
+                <span class="round"></span>
+                <img src="assets/images/car/4.png" class="img_icon" />
+              </span>
+            </div>
+            <div class="text_col">
+              Get a call from <br />
+              our experts
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-why-choose-us></app-why-choose-us>
+
+<app-faq></app-faq>
+<app-footer-nav></app-footer-nav>

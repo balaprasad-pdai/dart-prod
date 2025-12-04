@@ -1,0 +1,272 @@
+<!-- modals -->
+<!-- <div
+  class="modal fade"
+  id="ModalCheckout"
+  role="dialog"
+  [ngClass]="{ show: orderService.orderComplete }"
+> -->
+<div class="modal fade" id="ModalCheckout" role="dialog">
+  <div class="modal-dialog modal-md" style="max-width: 560px">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-login-popup-wpr">
+        <div class="m-header">
+          <div class="close-btn">
+            <button type="button" class="close" data-dismiss="modal">
+              <i class="fa fa-close"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="login-form-wpr plr-30">
+          <div class="input-group-wpr">
+            <div class="status_icon_wpr">
+              <svg
+                width="116"
+                height="116"
+                viewBox="0 0 116 116"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M95.8543 50.7494L94.0335 55.2536C93.4585 56.7869 93.4585 58.4161 94.0335 59.9494L95.8543 64.4536C96.9085 67.1369 96.046 70.2036 93.6501 71.9286L89.6251 74.7077C88.2835 75.6661 87.421 77.1036 87.0376 78.6369L86.1751 83.4286C85.6001 86.3036 83.2043 88.4119 80.3293 88.5077L75.4418 88.6994C73.8126 88.7952 72.2793 89.4661 71.1293 90.6161L67.7751 94.1619C65.7626 96.2702 62.6001 96.7494 60.1085 95.3119L55.8918 92.8202C54.4543 91.9577 52.8251 91.7661 51.196 92.1494L46.4043 93.2994C43.6251 93.9702 40.6543 92.6286 39.3126 90.0411L37.1085 85.6327C36.3418 84.1952 35.096 83.0452 33.5626 82.5661L28.9626 81.0327C26.1835 80.0744 24.4585 77.3911 24.746 74.5161L25.2251 69.6286C25.4168 67.9994 24.9376 66.3702 23.8835 65.1244L20.8168 61.2911C18.996 58.9911 18.996 55.8286 20.8168 53.5286L23.8835 49.6952C24.9376 48.4494 25.4168 46.8202 25.2251 45.1911L24.746 40.3036C24.4585 37.4286 26.1835 34.7452 28.9626 33.7869L33.5626 32.2536C35.096 31.7744 36.3418 30.6244 37.1085 29.1869L39.3126 24.7786C40.6543 22.1911 43.5293 20.8494 46.4043 21.5202L51.196 22.6702C52.7293 23.0536 54.4543 22.8619 55.8918 21.9994L60.1085 19.5077C62.6001 18.0702 65.7626 18.4536 67.7751 20.6577L71.1293 24.2036C72.2793 25.3536 73.8126 26.1202 75.4418 26.1202L80.3293 26.3119C83.2043 26.4077 85.696 28.5161 86.1751 31.3911L87.0376 36.1827C87.3251 37.8119 88.2835 39.2494 89.6251 40.1119L93.6501 42.8911C96.046 44.9994 97.0043 48.0661 95.8543 50.7494Z"
+                  fill="#00D566"
+                />
+                <g opacity="0.15">
+                  <path
+                    d="M42.0918 89.7536L39.8876 85.3452C39.121 83.9077 37.8751 82.7577 36.3418 82.2786L31.7418 80.7452C28.9626 79.7869 27.2376 77.1036 27.5251 74.2286L28.0043 69.3411C28.196 67.7119 27.7168 66.0827 26.6626 64.8369L23.596 61.0036C21.7751 58.7036 21.7751 55.5411 23.596 53.2411L26.6626 49.4077C27.7168 48.1619 28.196 46.5327 28.0043 44.9036L27.5251 40.0161C27.2376 37.1411 28.9626 34.4577 31.7418 33.4994L36.3418 31.9661C37.8751 31.4869 39.121 30.3369 39.8876 28.8994L42.0918 24.4911C42.8585 22.9577 44.2001 21.9036 45.6376 21.4244C43.0501 21.0411 40.4626 22.3827 39.3126 24.7786L37.1085 29.1869C36.3418 30.6244 35.096 31.7744 33.5626 32.2536L28.9626 33.7869C26.1835 34.7452 24.4585 37.4286 24.746 40.3036L25.2251 45.1911C25.4168 46.8202 24.9376 48.4494 23.8835 49.6952L20.8168 53.5286C18.996 55.8286 18.996 58.9911 20.8168 61.2911L23.8835 65.1244C24.9376 66.3702 25.4168 67.9994 25.2251 69.6286L24.746 74.5161C24.4585 77.3911 26.1835 80.0744 28.9626 81.0327L33.5626 82.5661C35.096 83.0452 36.3418 84.1952 37.1085 85.6327L39.3126 90.0411C40.6543 92.6286 43.5293 93.9702 46.4043 93.2994L46.9793 93.2036C44.871 92.8202 43.0501 91.6702 42.0918 89.7536Z"
+                    fill="black"
+                  />
+                  <path
+                    d="M58.5747 21.7119L62.7913 19.2202C63.1747 19.0286 63.558 18.8369 63.9413 18.7411C62.5997 18.5494 61.1622 18.8369 60.0122 19.5077L55.7955 21.9994C55.4122 22.1911 55.0288 22.3827 54.6455 22.4786C55.9872 22.6702 57.3288 22.4786 58.5747 21.7119Z"
+                    fill="black"
+                  />
+                  <path
+                    d="M78.1249 88.3161C77.6457 88.3161 77.1665 88.4119 76.7832 88.5077L80.2332 88.3161C80.7124 88.3161 81.0957 88.2202 81.5749 88.1244L78.1249 88.3161Z"
+                    fill="black"
+                  />
+                  <path
+                    d="M62.7922 94.9286L58.5755 92.4369C57.138 91.5744 55.5089 91.3827 53.8797 91.7661L53.3047 91.8619C54.1672 91.9577 54.9339 92.2452 55.7005 92.6286L59.9172 95.1202C61.5464 96.0786 63.3672 96.1744 65.0922 95.5994C64.3255 95.5994 63.5589 95.4077 62.7922 94.9286Z"
+                    fill="black"
+                  />
+                </g>
+                <path
+                  d="M42.667 51.5161L54.6462 65.2202L79.1795 45.4786"
+                  fill="#00D566"
+                />
+                <path
+                  d="M51.7711 72.3119C50.4294 72.3119 49.0877 71.7369 48.1294 70.6827L36.1502 56.9786C34.4252 54.9661 34.6169 51.9952 36.5336 50.1744C38.5461 48.4494 41.5169 48.6411 43.3377 50.5577L52.3461 60.8119L73.3336 43.9452C75.3461 42.3161 78.4127 42.6036 80.0419 44.7119C81.6711 46.8202 81.3836 49.7911 79.2752 51.4202L54.7419 71.2577C53.8794 71.9286 52.8252 72.3119 51.7711 72.3119Z"
+                  fill="white"
+                />
+              </svg>
+            </div>
+            <h2>
+              Your Comprehensive <br />
+              Service is booked !
+            </h2>
+            <label class="label_txt"
+              >Your OTP has been successfully verified. Go head and <br />
+              explore all the best services at amazing prices!</label
+            >
+          </div>
+
+          <div class="time_status_blk">
+            <div class="col_time_blk">
+              <i class="fa fa-calendar"></i> 02 March, 2023
+            </div>
+            <div class="col_time_blk">
+              <i class="fa fa-clock"></i> 10 am - 11 am
+            </div>
+          </div>
+
+          <div class="billing_wpr">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="title">Booking Address</div>
+                <div class="address_blk">
+                  <div class="name">Albin Joseph</div>
+                  <div class="desc">
+                    Lulu Cyber Park,Infopark Kochi <br />
+                    Kerala, 670803 <br />
+                    Mobile: +91 9048528552
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="title">Payment Details</div>
+                <div class="billing_amount_wpr">
+                  <div class="row_info">
+                    <span class="title_info">Total Price</span>
+                    <span class="title_val">₹4,000</span>
+                  </div>
+                  <div class="row_info">
+                    <span class="title_info">GST (18%)</span>
+                    <span class="title_val">₹4,000</span>
+                  </div>
+                  <hr />
+                  <div class="row_info head">
+                    <span class="title_info">Total Price</span>
+                    <span class="title_val">₹4,000</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-header></app-header>
+
+<section class="page-section bg_gray top_section_padding">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-9">
+        <div class="page_nav_wpr">
+          <span class="icon" (click)="navigateToUrl('bookings')"
+            ><i class="fa fa-arrow-left"></i
+          ></span>
+          <span class="title">Choose your pickup date & time</span>
+        </div>
+        <!-- calendar_main_wpr -->
+
+        <div class="wpr appointment_wpr">
+          <div class="row">
+            <div class="col-md-7">
+              <div class="calendar_wrapper">
+                <header>
+                  <p class="current-date"></p>
+                  <div class="icons">
+                    <span id="prev" (click)="prevMonth()">
+                      <i class="fa fa fa-arrow-left"></i>
+                    </span>
+
+                    <span id="next" (click)="nextMonth()">
+                      <i class="fa fa-arrow-right"></i>
+                    </span>
+                  </div>
+                </header>
+
+                <div class="calendar">
+                  <ul class="weeks">
+                    <li>Sun</li>
+                    <li>Mon</li>
+                    <li>Tue</li>
+                    <li>Wed</li>
+                    <li>Thu</li>
+                    <li>Fri</li>
+                    <li>Sat</li>
+                  </ul>
+                  <ul class="days" (click)="getServiceDay($event)"></ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="time_slot_wpr">
+                <span *ngFor="let slot of slots">
+                  <div
+                    class="row_slot"
+                    [ngClass]="{ active: selectedSlot == slot.time}"
+                    (click)="getServiceSlot($event, slot.value)"
+                  >
+                    {{ slot.time }}
+                  </div>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <app-profile-address
+                [cartPageList]="true"
+                (addressSelection)="addressSelection($event)"
+              ></app-profile-address>
+            </div>
+            <div class="col-lg-6 col-md-12 col-sm-12">
+              <h4 class="veh_title">Add Vehicle Details</h4>
+              <div class="car_details">
+                <label for="">Make</label>
+                <select name="" id="" (change)="onBrandChange()" [(ngModel)]="selBrand">
+                  <option [value]="brand.id" *ngFor="let brand of brandsList" >{{brand.name}}</option>
+                </select>
+              </div>
+              <div class="car_details">
+                <label for="">Model</label>
+                <select name="" id="" (change)="onModelChange()" [(ngModel)]="selModel">
+                  <option [value]="model.id" *ngFor="let model of filteredModelList">{{model.name}}</option>
+                </select>
+              </div>
+              <div class="car_details">
+                <label for="">Fuel</label>
+                <select name="" id="" [(ngModel)]="selFuel" (change)="onFuelChange()">
+                  <option [value]="fuel" *ngFor="let fuel of fuelList">{{fuel}}</option>
+                </select>
+              </div>
+            </div>
+            <!-- <div class="address_wpr">
+              <h2 class="head_title">Add Address</h2>
+              <div class="row">
+                <ng-container *ngFor="let address of addressList">
+                  <div class="col-md-6" (click)="addressSelection(address)">
+                    <div class="address_blk">
+                      <div class="sel_blk">
+                        <input
+                          type="radio"
+                          [name]="address.id"
+                          [checked]="address.active"
+                        />
+                      </div>
+                      <div class="address_text">
+                        <div class="title_name">
+                          {{ address?.name }}
+                        </div>
+                        <div class="desc">
+                          {{ address?.address?.address1 }} <br />
+                          {{ address?.address?.landmark }} <br />
+                          {{ address?.address?.city }} -
+                          {{ address?.address?.state }} <br />
+                          Mobile: {{ address?.mobile }}
+                        </div>
+                        <div class="address_btn_wpr">
+                          <div class="btn_action">
+                            <i class="fa fa-edit"></i> Edit
+                          </div>
+                          <div class="btn_action">
+                            <i class="fa fa-trash"></i> Delete
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div
+                    class="btn_add_address"
+                    data-toggle="modal"
+                    data-target="#ModalAdd_Address"
+                  >
+                    + Add Address
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3" *ngIf="activeCartList?.id || fromInsurance">
+        <app-selected-packages
+          [activeCartList]="activeCartList"
+          [page]="'booking-detail'"
+          [orderParams]="orderParamsList"
+        ></app-selected-packages>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer-nav></app-footer-nav>

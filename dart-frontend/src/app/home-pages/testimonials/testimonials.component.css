@@ -1,0 +1,29 @@
+.owl-carousel{
+    display: inline-block;
+}
+.page_padding_section {
+    padding: 60px 0;
+}
+::ng-deep #testimonial-carousel .owl-carousel .owl-nav {
+    bottom: -60px !important;
+    left: 0 !important;
+    top: auto;
+    right: auto;
+}
+::ng-deep #testimonial-carousel .owl-carousel .owl-prev {
+    /* bottom: -60px !important;
+    left: 0 !important;
+    top: auto;
+    right: auto; */
+    left: -100px;
+}
+/* ::ng-deep #testimonial-carousel .owl-carousel .owl-nav div{
+    background-color: #EFEFEF !important;
+} */
+/* ::ng-deep #testimonial-carousel .owl-carousel .owl-nav div span i{
+    color: rgb(0 0 0 / 40%);
+    font-weight: bolder;
+} */
+/* ::ng-deep #testimonial-carousel .owl-carousel .owl-nav div:active span i {
+    color: rgb(0 0 0);
+} */

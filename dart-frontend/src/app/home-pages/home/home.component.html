@@ -1,0 +1,602 @@
+<!-- Modal -->
+<app-header [activeLink]="''"></app-header>
+<div class="slide_container">
+  <div class="home_form">
+    <h3>The Best Solution for all your car needs</h3>
+    <div class="home_form_desc">High tech all brand workshop with trainer and certified technicians</div>
+    <div class="form_group">
+      <label for="">Select Service</label>
+      <select name="" id=""  [(ngModel)]="selectedServiceNew" (ngModelChange)="onServiceChange($event)">
+        <option [value]="service.id" *ngFor="let service of servicesList">{{service.name}}</option>
+      </select>
+    </div>
+    <div class="form_group">
+      <label for="">Mobile Number</label>
+      <input type="text">
+    </div>
+    <div>
+      <button (click)="checkPriceAndNavigate('bookings')">Check pricing for free</button>
+    </div>
+  </div>
+  <owl-carousel-o [options]="customOptions">
+    <ng-container>
+      <ng-template class="slide" carouselSlide [id]="'slide-1'">
+        <div class="home_slide">
+          <div class="slide_content">
+            <h3>Why Choose Dart?</h3>
+            <div><span><img src="../../assets/images/icons/check-mark.png" alt=""></span>Best customer experience</div>
+            <div><span><img src="../../assets/images/icons/check-mark.png" alt=""></span>Genuine OEM spares provided</div>
+            <div><span><img src="../../assets/images/icons/check-mark.png" alt=""></span>Standard Operation Procedures</div>
+            <div><span><img src="../../assets/images/icons/check-mark.png" alt=""></span>Personal and Dedicated Team</div>
+            <div><span><img src="../../assets/images/icons/check-mark.png" alt=""></span>Specialized industry equipped workshop</div>
+            <div><span><img src="../../assets/images/icons/check-mark.png" alt=""></span>Skilled and Qualified Manpower</div>
+            <div><span><img src="../../assets/images/icons/check-mark.png" alt=""></span>Budget Friendly Services for Luxury Cars</div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+    <ng-container>
+      <ng-template class="slide" carouselSlide [id]="'slide-2'">
+        <div class="home_slide">
+          <div class="slide_content">
+            <h3>Our Services in Bangalore</h3>
+            <div><span><img src="../../assets/images/icons/check-mark.png" alt=""></span>Periodic Services</div>
+            <div><span><img src="../../assets/images/icons/check-mark.png" alt=""></span>Denting & Painting</div>
+            <div><span><img src="../../assets/images/icons/check-mark.png" alt=""></span>Insurance Claims</div>
+            <div><span><img src="../../assets/images/icons/check-mark.png" alt=""></span>Cashless Claim Settlement</div>
+            <div><span><img src="../../assets/images/icons/check-mark.png" alt=""></span>Car AC Services</div>
+            <div><span><img src="../../assets/images/icons/check-mark.png" alt=""></span>Paint Protection Film(PPF)</div>
+            <div><span><img src="../../assets/images/icons/check-mark.png" alt=""></span>Ceramic Coating</div>
+            <div><span><img src="../../assets/images/icons/check-mark.png" alt=""></span>Interior Germ Cleaning</div>
+            <div><span><img src="../../assets/images/icons/check-mark.png" alt=""></span>Tire Replacement</div>
+            <div><span><img src="../../assets/images/icons/check-mark.png" alt=""></span>Battery Replacement</div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+    <ng-container>
+      <ng-template class="slide" carouselSlide [id]="'slide-3'">
+        <div class="home_slide">
+          <div class="slide_content slide_content_last">
+            <span class="arrow_slider"
+              ><img src="../../assets/images/slider_arrow.svg" alt=""
+            /></span>
+            <div class="slider-txt-blk">
+              <h3>
+                The Best Solution for all your car needs!
+              </h3>
+              <div class="dart_desc">
+                DART is premier one stop destination for all multi-brand car services. Our expert technicians, equipped with cutting edge technology are specialized in servicing a wide range of vehicles from mainstream cars to luxury models.
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+    <ng-container>
+      <ng-template class="slide" carouselSlide [id]="'slide-4'">
+        <div class="home_slide">
+          <div class="slide_content slide_content_last">
+            <span class="arrow_slider"
+              ><img src="../../assets/images/slider_arrow.svg" alt=""
+            /></span>
+            <div class="slider-txt-blk">
+              <h3>
+                For the first time in the country!
+              </h3>
+              <div class="dart_desc">
+                Introducing Nitrogen Powered Painting, resulting in paint finish quality equal to new car finish. If not, better.
+                Elevate your expectations by our commitment with guaranteed quality on all paint jobs
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o> 
+</div>
+<!-- <section
+  class="home-slider"
+  style="background-image: url('../../assets/images/slider/1.svg')"
+> -->
+  <!-- <div class="slider-txt-wpr">
+    <span class="arrow_slider"
+      ><img src="../../assets/images/slider_arrow.svg" alt=""
+    /></span>
+    <div class="slider-txt-blk">
+      <h2 data-sal="slide-up" data-sal-duration="800" data-sal-delay="80">
+        The Best Solution for <br />
+        all your car needs!
+      </h2>
+
+      <div
+        class="search-blk"
+        data-sal="slide-up"
+        data-sal-duration="800"
+        data-sal-delay="100"
+      >
+        <div
+          class="col-search-blk"
+          style="min-width: 310px"
+          [ngClass]="{
+            active: showDropdown === 1,
+            'cart-true':
+              loggedIn &&
+              activeCartList?.id &&
+              activeCartList?.orderMeta?.package?.length
+          }"
+        >
+          <span
+            *ngIf="!selectedCarDetails?.name"
+            class="icon"
+            style="margin-left: 15px"
+            ><i class="fa fa-car"></i
+          ></span>
+          <span
+            *ngIf="selectedCarDetails?.name"
+            class="icon"
+            style="margin-left: 15px"
+            ><img class="car-img" [src]="selectedCarDetails?.sizedPhoto"
+          /></span>
+          <div class="search-input" (click)="dropdownHideAndShow(1)">
+            <ng-container
+              *ngIf="
+                selectedCarDetails?.brand?.name || selectedCarDetails?.name
+              "
+            >
+              {{ selectedCarDetails?.brand?.name }}
+              {{ selectedCarDetails?.name }}
+            </ng-container>
+            <ng-container
+              *ngIf="
+                !selectedCarDetails?.brand?.name && !selectedCarDetails?.name
+              "
+            >
+              Select Car model
+            </ng-container>
+          </div>
+         
+          <div
+            class="back-drop-dropdown"
+            *ngIf="showDropdown == 1 || showDropdownInner"
+            (click)="showDropdown = 0; showDropdownInner = false"
+          ></div>
+          <div
+            class="dropdown_popup"
+            id="car-dropdown"
+            [ngClass]="{
+              show: showDropdown == 1,
+              'zIndex-2000': showDropdown == 1
+            }"
+          >
+            <div class="head_search_blk">
+              <div class="search_input">
+                <input
+                  type="search"
+                  name=""
+                  placeholder="Search Car"
+                  class="search_input_txt"
+                  [(ngModel)]="modelSearchTerm"
+                  (ngModelChange)="searchModel($event)"
+                />
+                <span class="search_icon"><i class="fa fa-search"></i></span>
+              </div>
+            </div>
+            <div class="body_search_blk">
+              <ng-container *ngFor="let car of carsFiltered; let ind = index">
+                <div
+                  class="row_search_blk"
+                  *ngIf="ind < 5"
+                  (click)="showFuelTypeDropdown(car)"
+                >
+                  <span class="icon"
+                    ><img class="car-img" [src]="car?.sizedPhoto"
+                  /></span>
+                  <span class="title"
+                    >{{ car?.brand?.name }} {{ car?.name }}</span
+                  >
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div
+            class="dropdown_popup"
+            id="car-dropdown"
+            [ngClass]="{
+              show: showDropdownInner,
+              'zIndex-2000': showDropdownInner
+            }"
+          >
+            <div class="body_search_blk">
+              <div class="row_search_blk">
+                <span class="icon me-3 ms-2" style="width: 25px; height: 25px"
+                  ><img
+                    (click)="showDropdownInner = false; dropdownHideAndShow(1)"
+                    src="../../../assets/images/icons/leftarrow.png"
+                /></span>
+                <span class="icon"><img [src]="car?.sizedPhoto" /></span>
+                <span class="title"
+                  >{{ car?.brand?.name }} {{ car?.name }}</span
+                >
+              </div>
+              <div
+                class="dropdown_popup_inner"
+                [ngClass]="{
+                  show: showDropdownInner,
+                  'zIndex-2001': showDropdownInner
+                }"
+              >
+                <div class="body_search_blk">
+                  <ng-container *ngFor="let fuel of car?.fuelType">
+                    <div
+                      class="row_search_blk py-2"
+                      (click)="selectModel(car, fuel)"
+                    >
+                      <span class="icon" style="width: 30px; height: 30px"
+                        ><img [src]="getFuelImage(fuel)"
+                      /></span>
+                      <span class="title">{{ fuel }}</span>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-search-blk" [ngClass]="{ active: showDropdown == 2 }">
+          <span class="icon"
+            ><img
+              class="icon-img"
+              *ngIf="selectedService?.logoUrl"
+              [src]="selectedService?.logoUrl"
+              alt=""
+          /></span>
+          <div class="search-input" (click)="dropdownHideAndShow(2)">
+            {{ selectedService?.name }}
+          </div>
+          <div
+            class="back-drop-dropdown"
+            *ngIf="showDropdown == 2"
+            (click)="showDropdown = 0"
+          ></div>
+          <div
+            class="dropdown_popup"
+            [ngClass]="{
+              show: showDropdown == 2,
+              'zIndex-2000': showDropdown == 2
+            }"
+          >
+            <div class="head_search_blk">
+              <div class="search_input">
+                <input
+                  type="search"
+                  name=""
+                  placeholder="Select service"
+                  class="search_input_txt"
+                  [(ngModel)]="serviceSearchTerm"
+                  (ngModelChange)="searchService($event)"
+                />
+                <span class="search_icon"><i class="fa fa-search"></i></span>
+              </div>
+            </div>
+            <div class="body_search_blk">
+              <div
+                class="row_search_blk"
+                *ngFor="let service of servicesListFiltered"
+                (click)="selectService(service)"
+              >
+                <span class="icon"
+                  ><img
+                    [src]="service?.logoUrl"
+                    style="width: 30px; height: 30px"
+                /></span>
+                <span class="title">{{ service.name }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="btn-search" (click)="checkValuesAndNavigate('bookings')">
+          Check Pricing
+        </div>
+      </div>
+    </div>
+  </div> -->
+<!-- </section> -->
+<section class="page-section">
+  <div class="container container-full-wpr">
+    <div class="page-title">
+      <h3
+        data-sal="slide-up"
+        data-sal-duration="800"
+        data-sal-delay="100"
+        class="page-section-title"
+      >
+        Our Services
+      </h3>
+    </div>
+    <!-- <div
+      class="services_wpr full_width owl-carousel owl-theme carousel-nav"
+      id="services-carousel"
+    >  -->
+    <div
+      class="services_wpr owl-carousel owl-theme carousel-nav"
+      id="services-carousel"
+    >
+      <owl-carousel-o
+        [options]="brandsOptions"
+        (dragging)="startDragging($event.dragging)"
+      >
+        <ng-container *ngFor="let category of servicesList; let ind = index">
+          <ng-template carouselSlide [id]="category.id">
+            <div
+              [style.background-color]="category.bgColor"
+              class="services_blk"
+              (click)="selectServiceAndNavigate(category)"
+            >
+              <div class="services_inblk">
+                <span class="icon">
+                  <!-- <span class="round"></span> -->
+                  <img src="{{ category?.logoUrl }}" class="img_icon" />
+                </span>
+                <div class="title">{{ category.name }}</div>
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+  </div>
+</section>
+
+<section class="page-section p_relative">
+  <span
+    class="arrow_slider"
+    style="position: absolute; right: 80px; width: 100px; top: 80px"
+    ><img src="../../assets/images/slider_arrow_1.svg"
+  /></span>
+
+  <span
+    class="p_dots"
+    data-sal="slide-up"
+    data-sal-duration="800"
+    data-sal-delay="100"
+    ><img src="../../assets/images/dots.svg"
+  /></span>
+  <div class="container container-full-wpr">
+    <div class="row d-flex-center">
+      <div class="col-md-6">
+        <div class="about_img_blk">
+          <div class="img_blk">
+            <span
+              class="round"
+              data-sal="slide-up"
+              data-sal-duration="800"
+              data-sal-delay="100"
+            ></span>
+            <span
+              class="half_round"
+              data-sal="slide-up"
+              data-sal-duration="1000"
+              data-sal-delay="200"
+            ></span>
+            <img
+              src="../../assets/images/about.png"
+              data-sal="slide-up"
+              data-sal-duration="800"
+              data-sal-delay="10"
+            />
+            <div
+              class="img_txt_blk"
+              data-sal="slide-up"
+              data-sal-duration="800"
+              data-sal-delay="100"
+            >
+              <div class="count">12+</div>
+              <div class="count_label">
+                Years of <br />
+                Experience
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div
+          class="about_text_wpr"
+          data-sal="slide-up"
+          data-sal-duration="800"
+          data-sal-delay="100"
+        >
+          <h4>ABOUT US</h4>
+          <h2>
+            One of it's kind <br />
+            experience backed
+          </h2>
+          <div class="desc">
+            The Prestigious Popular Group proudly presents its latest venture -
+            Popular Motor Ventures LLP - a cutting-edge service and repair
+            center catering to multi-brand vehicles. Our unwavering commitment
+            is to deliver unparalleled service to our esteemed clients in the
+            quickest possible time.
+          </div>
+
+          <div
+            class="col_customer_blk"
+            data-sal="slide-up"
+            data-sal-duration="800"
+            data-sal-delay="100"
+          >
+            <div class="col">
+              <div class="count">30k+</div>
+              <div class="count_label">
+                Satisfied <br />
+                Customers
+              </div>
+            </div>
+            <div class="col">
+              <div class="count">16+</div>
+              <div class="count_label">
+                Valuable <br />
+                Services
+              </div>
+            </div>
+          </div>
+          <div class="ft_sec_wpr">
+            <div
+              class="btn_page"
+              data-sal="slide-up"
+              data-sal-duration="800"
+              data-sal-delay="100"
+              (click)="readMoreAboutUs()"
+            >
+              About us
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<app-why-choose-us></app-why-choose-us>
+
+<section class="page-section">
+  <div class="container">
+    <div class="car_details_wpr">
+      <img src="../../assets/images/car-details.jpeg" />
+
+      <div class="car_points" (click)="selectServiceAndNavigate(fullBodyPaint)">
+        <span class="point"></span>
+        <div class="car_tooltip">
+          <span class="icon"
+            ><img
+              src="{{ getFullBodyPaintCategory()?.logoUrl }}"
+              class="img_icon"
+          /></span>
+          <span class="title">{{ getFullBodyPaintCategory()?.name }}</span>
+        </div>
+      </div>
+
+      <div
+        class="car_points"
+        style="left: 710px"
+        (click)="selectServiceAndNavigate(fullBodyPaint)"
+      >
+        <span class="point"></span>
+        <div class="car_tooltip">
+          <span class="icon"
+            ><img
+              src="{{ getFullBodyPaintCategory()?.logoUrl }}"
+              class="img_icon"
+          /></span>
+          <span class="title">{{ getFullBodyPaintCategory()?.name }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- <section class="page-section">
+  <div class="container">
+    <div
+      class="brand_text_wpr"
+      data-sal="slide-up"
+      data-sal-duration="800"
+      data-sal-delay="100"
+    >
+      <h4>Our BRANDS</h4>
+      <h2>
+        Associated with these <br />
+        brands
+      </h2>
+    </div>
+
+    <div
+      class="brand_wpr owl-carousel owl-theme carousel-nav"
+      id="brand-carousel"
+    >
+      <owl-carousel-o
+        [options]="brandsOptions"
+        (dragging)="startDragging($event.dragging)"
+      >
+        <ng-container *ngFor="let brand of brandsList">
+          <ng-template carouselSlide>
+            <div class="barnd_blk">
+              <img src="{{ brand }}" />
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+      <!/-- <div class="barnd_blk">
+          <img src="../../assets/images/brands/1.png" />
+        </div>
+        <div class="barnd_blk">
+          <img src="../../assets/images/brands/2.png" />
+        </div>
+        <div class="barnd_blk">
+          <img src="../../assets/images/brands/3.png" />
+        </div>
+        <div class="barnd_blk">
+          <img src="../../assets/images/brands/4.png" />
+        </div> --/>
+    </div>
+  </div>
+</section> -->
+
+<app-our-process></app-our-process>
+
+<app-our-blogs
+  *ngIf="blogsList.length"
+  [blogsList]="blogsList"
+  [blogcategory]="blogcategory"
+  [blogsOptions]="blogsOptions"
+></app-our-blogs>
+<!-- <section class="page-section bg_gray">
+  <div class="container">
+    <div
+      class="brand_text_wpr"
+      data-sal="slide-up"
+      data-sal-duration="800"
+      data-sal-delay="100"
+    >
+      <h4>COUPON CODE</h4>
+      <h2>
+        Grab one before <br />
+        it’s gone
+      </h2>
+    </div>
+
+    <div
+      class="brand_wpr services_wpr owl-carousel owl-theme carousel-nav"
+      id="coupon-carousel"
+    >
+      <owl-carousel-o
+        [options]="couponsOptions"
+        (dragging)="startDragging($event.dragging)"
+      >
+        <ng-container *ngFor="let coupon of couponsList">
+          <ng-template carouselSlide>
+            <div class="coupon_blk {{ coupon.backgroundColor }}">
+              <div class="coupon_head">
+                <div class="icon"><i class="ti ti-ticket"></i></div>
+                <div class="coupon_code_blk">
+                  <span class="coupon_code">{{ coupon.code }}</span>
+                  <span class="copy"><i class="fa fa-copy"></i></span>
+                </div>
+              </div>
+              <h3>{{ coupon.name }}</h3>
+              <div class="desc">
+                {{ coupon.description }} <br />
+                {{ coupon.description2 }}
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+      </owl-carousel-o>
+    </div>
+  </div>
+</section> -->
+
+<!-- testimonials -->
+
+<app-testimonials></app-testimonials>
+<app-footer-nav></app-footer-nav>

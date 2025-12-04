@@ -1,0 +1,207 @@
+<div class="modal fade" id="ModalAdd_Address" role="dialog">
+  <div class="modal-dialog modal-md" style="max-width: 720px">
+    <!-- Modal content -->
+    <div class="modal-content">
+      <div class="modal-login-popup-wpr">
+        <div class="m-header">
+          <div class="close-btn">
+            <button type="button" class="close" data-dismiss="modal">
+              <i class="fa fa-close"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="form_input_wpr">
+          <h2 class="title">Update Profile</h2>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-control">
+                <input
+                  type="text"
+                  name="name"
+                  class="form-input"
+                  placeholder="none"
+                  required=""
+                />
+                <label for="name" class="form-label">Full Name*</label>
+              </div>
+            </div>
+
+            <div class="col-md-6 imgupd">
+              <label for="payment-field" class="form-label"></label>
+              <input type="file" (change)="onAccept($event)" *ngIf="upload" />
+              <div class="img-block" *ngIf="!upload">
+                <button
+                  type="button"
+                  class="close"
+                  id="close-btn"
+                  ngbTooltip="Remove Image"
+                  (click)="removeImage()"
+                >
+                  <span>&times;</span>
+                </button>
+                <img
+                  src="{{ form['photoUrl'].value }}"
+                  alt=""
+                  class="avatar-lg rounded me-3"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="team_label">
+              <input type="checkbox" name="" /> use this as the default address
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="btn_ft_wpr">
+              <div class="btn_submit ml-15">Save</div>
+              <div class="btn_cancel">Cancel</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-header></app-header>
+
+<section class="page-section bg_gray top_section_padding">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-3">
+        <div class="my_account_nav_wpr">
+          <div class="nav_wpr min_ht">
+            <div class="row_blk active">
+              <span class="icon"><i class="ti ti-user"></i></span>
+              <span class="title">Personal Information</span>
+            </div>
+
+            <div
+              class="row_blk"
+              (click)="navigateToUrl('profile/profile-address')"
+            >
+              <span class="icon"><i class="ti ti-location-pin"></i></span>
+              <span class="title">Address</span>
+            </div>
+
+            <div class="row_blk" (click)="navigateToUrl('bookings/history')">
+              <span class="icon"><i class="ti ti-file"></i></span>
+              <span class="title">Booking History</span>
+            </div>
+          </div>
+          <div class="nav_wpr">
+            <div class="row_blk" (click)="headerService.logout()">
+              <span class="icon"><i class="ti ti-power-off"></i></span>
+              <span class="title">Logout</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="card_wpr">
+          <div class="address_wpr">
+            <h2 class="head_title">Personal Information</h2>
+            <form [formGroup]="profileForm" class="row">
+              <div class="col-md-12">
+                <label for="payment-field" class="image"
+                  ><b>Profile picture</b></label
+                >
+                <div class="avatar-sm imagesee">
+                  <img
+                    *ngIf="form['photoUrl']?.value"
+                    src="{{ form['photoUrl'].value }}"
+                    alt
+                  />
+                  <img
+                    *ngIf="!form['photoUrl']?.value"
+                    src="../../../assets/images/icons/demo-profile.png"
+                    alt
+                  />
+
+                  <input
+                    type="file"
+                    name="uploadImage"
+                    (change)="onAccept($event)"
+                  />
+                </div>
+              </div>
+
+              <!-- <div class="col-md-6">
+                <div class="form-control">
+                  <input
+                    formControlName="email"
+                    type="text"
+                    name="email"
+                    class="form-input"
+                    placeholder="none"
+                    required=""
+                  />
+                  <span
+                    *ngIf="
+                      this.profileForm.get('email')?.errors &&
+                      this.profileForm.get('email')?.touched
+                    "
+                  >
+                    <p class="text-danger" style="float: right">
+                      Invalid Email Id
+                    </p>
+                  </span>
+                  <label for="name" class="form-label">Email*</label>
+                </div>
+              </div> -->
+              <div class="col-md-6">
+                <div class="form-control">
+                  <input
+                    formControlName="name"
+                    type="text"
+                    name=""
+                    class="form-input"
+                    placeholder="none"
+                    required=""
+                  />
+                  <span
+                    *ngIf="
+                      this.profileForm.get('name')?.errors &&
+                      this.profileForm.get('name')?.touched
+                    "
+                  >
+                    <p class="text-danger" style="float: right">
+                      Characters Only
+                    </p>
+                  </span>
+                  <label for="name" class="form-label">Full Name</label>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-control">
+                  <input
+                    formControlName="mobile"
+                    type="text"
+                    name="mobile"
+                    class="form-input"
+                    readonly
+                  />
+                  <label for="name" class="form-label">Mobile Number</label>
+                </div>
+              </div>
+            </form>
+
+            <div class="row">
+              <div class="col-md-12">
+                <div class="btn_add_address" (click)="updateProfile()">
+                  Update Profile
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer-nav></app-footer-nav>

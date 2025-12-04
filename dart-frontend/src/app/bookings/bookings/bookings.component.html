@@ -1,0 +1,1096 @@
+<app-header [activeLink]="'Services'"></app-header>
+<section class="booking_top_wpr">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-10">
+        <div class="row">
+          <div class="col-md-3">
+            <div class="title_label" *ngIf="!selectedPanelList?.length">
+              Showing
+              {{
+                filteredPackageList && filteredPackageList.length
+                  ? filteredPackageList.length
+                  : ""
+              }}
+              plans for
+            </div>
+            <h5 class="title_label_head">{{ getActiveService() }}</h5>
+          </div>
+          <div class="col-md-9">
+            <div class="search-blk" id="search-group">
+              <!-- <div
+                class="col-search-blk"
+                [ngClass]="{
+                  active: showDropdown == 1
+                }"
+              >
+                <span class="icon input-icon"
+                  ><img alt="" [src]="selectedCarModel?.sizedPhoto"
+                /></span>
+                <div class="search-input" (click)="dropdownHideAndShow(1)">
+                  <span class="wpr" id="model-wpr">
+                    {{ selectedCarModel?.brand?.name }}
+                    {{ selectedCarModel?.name }}
+                  </span>
+                  <small class="fuel-wpr">{{ fuelType }}</small>
+                </div>
+                <div
+                  class="back-drop-dropdown"
+                  *ngIf="showDropdown == 1 || showDropdownInner"
+                  (click)="showDropdown = 0; showDropdownInner = false"
+                ></div>
+                <div
+                  class="dropdown_popup"
+                  id="car-dropdown"
+                  [ngClass]="{
+                    show: showDropdown == 1,
+                    'zIndex-2000': showDropdown == 1
+                  }"
+                >
+                  <div class="head_search_blk">
+                    <div class="search_input">
+                      <input
+                        type="search"
+                        name=""
+                        placeholder="Search Car"
+                        class="search_input_txt"
+                        [(ngModel)]="modelSearchTerm"
+                        (ngModelChange)="searchModel($event)"
+                      />
+                      <span class="search_icon"
+                        ><i class="fa fa-search"></i
+                      ></span>
+                    </div>
+                  </div>
+                  <div class="body_search_blk">
+                    <ng-container
+                      *ngFor="let car of carsFiltered; let ind = index"
+                    >
+                      <div
+                        class="row_search_blk"
+                        *ngIf="ind < 5"
+                        (click)="showFuelTypeDropdown(car)"
+                      >
+                        <span class="icon"
+                          ><img class="car-img" [src]="car?.sizedPhoto"
+                        /></span>
+                        <span class="title"
+                          >{{ car?.brand?.name }} {{ car?.name }}</span
+                        >
+                      </div>
+                      
+                    </ng-container>
+                  </div>
+                </div>
+                <div
+                  class="dropdown_popup"
+                  id="car-dropdown"
+                  [ngClass]="{
+                    show: showDropdownInner,
+                    'zIndex-2000': showDropdownInner
+                  }"
+                >
+                  <div class="body_search_blk">
+                    <div class="row_search_blk">
+                      <span
+                        class="icon me-3 ms-2"
+                        style="width: 25px; height: 25px"
+                        ><img
+                          (click)="
+                            showDropdownInner = false; dropdownHideAndShow(1)
+                          "
+                          src="../../../assets/images/icons/leftarrow.png"
+                      /></span>
+                      <span class="icon"><img [src]="car?.sizedPhoto" /></span>
+                      <span class="title"
+                        >{{ car?.brand?.name }} {{ car?.name }}</span
+                      >
+                    </div>
+                    <div
+                      class="dropdown_popup_inner"
+                      [ngClass]="{
+                        show: showDropdownInner,
+                        'zIndex-2001': showDropdownInner
+                      }"
+                    >
+                      <div class="body_search_blk">
+                        <ng-container *ngFor="let fuel of car?.fuelType">
+                          <div
+                            class="row_search_blk py-2"
+                            (click)="selectModel(car, fuel)"
+                          >
+                            <span class="icon" style="width: 30px; height: 30px"
+                              ><img [src]="getFuelImage(fuel)"
+                            /></span>
+                            <span class="title">{{ fuel }}</span>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              <div
+                class="col-search-blk"
+                [ngClass]="{ active: showDropdown == 2 }"
+              >
+                <span class="icon input-icon"
+                  ><img
+                    alt=""
+                    [src]="selectedService.logoUrl"
+                    style="max-width: 35px"
+                /></span>
+                <div class="search-input" (click)="dropdownHideAndShow(2)">
+                  {{ selectedService.name }}
+                </div>
+                <div
+                  class="back-drop-dropdown"
+                  *ngIf="showDropdown == 2"
+                  (click)="showDropdown = 0"
+                ></div>
+                <div
+                  class="dropdown_popup"
+                  [ngClass]="{
+                    show: showDropdown == 2,
+                    'zIndex-2000': showDropdown == 2
+                  }"
+                >
+                  <div class="head_search_blk">
+                    <div class="search_input">
+                      <input
+                        type="search"
+                        name=""
+                        placeholder="Select service"
+                        class="search_input_txt"
+                        [(ngModel)]="serviceSearchTerm"
+                        (ngModelChange)="searchService($event)"
+                      />
+                      <span class="search_icon"
+                        ><i class="fa fa-search"></i
+                      ></span>
+                    </div>
+                  </div>
+                  <div class="body_search_blk">
+                    <div
+                      class="row_search_blk"
+                      *ngFor="let service of servicesListFiltered"
+                      (click)="selectService(service)"
+                    >
+                      <span class="icon"
+                        ><img
+                          alt=""
+                          [src]="service?.logoUrl"
+                          style="width: 30px; height: 30px"
+                      /></span>
+                      <span class="title">{{ service.name }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="btn-search" (click)="searchPackageListNew()">
+                <i class="fa fa-search"></i> Search Packages
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-2 d-flex-end mob_filter_wpr">
+        <div class="filter_btn pakage_btn">
+          <span class="icon">
+            <svg
+              width="14"
+              height="14"
+              viewBox="0 0 14 14"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.27113 6.62351L1.81141 11.0832C1.69412 11.2004 1.60106 11.3395 1.53757 11.4927C1.47408 11.6458 1.44141 11.81 1.44141 11.9758C1.44141 12.1416 1.47408 12.3058 1.53757 12.4589C1.60106 12.6121 1.69412 12.7512 1.81141 12.8684C2.048 13.1049 2.36883 13.2378 2.70336 13.2378C3.03788 13.2378 3.35872 13.1049 3.5953 12.8684L8.05502 8.4074M6.27113 6.62351C5.73874 5.26541 5.84282 3.48342 6.93977 2.38584C8.03735 1.28825 10.0622 1.04792 11.1774 1.71719L9.25983 3.63481L9.08132 5.59721L11.0437 5.41933L12.9613 3.50108C13.6312 4.61633 13.3903 6.64117 12.2927 7.73813C11.1951 8.83571 9.41312 8.93979 8.05502 8.4074"
+                stroke="black"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+          <span class="title">Packages</span>
+        </div>
+
+        <div class="filter_btn" id="filter_btn">
+          <span class="icon">
+            <svg
+              width="19"
+              height="18"
+              viewBox="0 0 19 18"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8.41016 2.9668H18.1602M8.41016 2.9668C8.41016 3.36462 8.25212 3.74615 7.97082 4.02746C7.68951 4.30876 7.30798 4.4668 6.91016 4.4668C6.51233 4.4668 6.1308 4.30876 5.8495 4.02746C5.56819 3.74615 5.41016 3.36462 5.41016 2.9668M8.41016 2.9668C8.41016 2.56897 8.25212 2.18744 7.97082 1.90614C7.68951 1.62483 7.30798 1.4668 6.91016 1.4668C6.51233 1.4668 6.1308 1.62483 5.8495 1.90614C5.56819 2.18744 5.41016 2.56897 5.41016 2.9668M5.41016 2.9668H1.66016M8.41016 14.9668H18.1602M8.41016 14.9668C8.41016 15.3646 8.25212 15.7462 7.97082 16.0275C7.68951 16.3088 7.30798 16.4668 6.91016 16.4668C6.51233 16.4668 6.1308 16.3088 5.8495 16.0275C5.56819 15.7462 5.41016 15.3646 5.41016 14.9668M8.41016 14.9668C8.41016 14.569 8.25212 14.1874 7.97082 13.9061C7.68951 13.6248 7.30798 13.4668 6.91016 13.4668C6.51233 13.4668 6.1308 13.6248 5.8495 13.9061C5.56819 14.1874 5.41016 14.569 5.41016 14.9668M5.41016 14.9668H1.66016M14.4102 8.9668H18.1602M14.4102 8.9668C14.4102 9.36462 14.2521 9.74615 13.9708 10.0275C13.6895 10.3088 13.308 10.4668 12.9102 10.4668C12.5123 10.4668 12.1308 10.3088 11.8495 10.0275C11.5682 9.74615 11.4102 9.36462 11.4102 8.9668M14.4102 8.9668C14.4102 8.56897 14.2521 8.18744 13.9708 7.90614C13.6895 7.62483 13.308 7.4668 12.9102 7.4668C12.5123 7.4668 12.1308 7.62483 11.8495 7.90614C11.5682 8.18744 11.4102 8.56897 11.4102 8.9668M11.4102 8.9668H1.66016"
+                stroke="black"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+          <span class="title">All Filters</span>
+        </div>
+      </div> -->
+    </div>
+  </div>
+</section>
+
+<div class="filter_popup_wpr" id="filter_popup_wpr">
+  <div class="overlay"></div>
+  <div class="filter_popup_blk">
+    <div class="head_blk">
+      <span class="title">Filters</span>
+      <span class="close-btn"><i class="fa fa-close"></i></span>
+    </div>
+    <div class="body_blk">
+      <div class="filter_cate_wpr active">
+        <div class="head_cat">
+          <span class="title_cate">Duration</span>
+          <span class="nav_icon"><i class="fa fa-angle-down"></i></span>
+        </div>
+        <div class="body_cat">
+          <div class="row_blk">
+            <input type="checkbox" name="" />
+            <label>1 hour</label>
+          </div>
+          <div class="row_blk">
+            <input type="checkbox" name="" />
+            <label>1 hour 30 min</label>
+          </div>
+          <div class="row_blk">
+            <input type="checkbox" name="" />
+            <label>2 hour</label>
+          </div>
+          <div class="row_blk">
+            <input type="checkbox" name="" />
+            <label>2 hour 30 min</label>
+          </div>
+          <div class="load_more">Load more</div>
+        </div>
+      </div>
+      <div class="filter_cate_wpr">
+        <div class="head_cat">
+          <span class="title_cate">Warranty</span>
+          <span class="nav_icon"><i class="fa fa-angle-down"></i></span>
+        </div>
+        <div class="body_cat">
+          <div class="row_blk">
+            <input type="checkbox" name="" />
+            <label>1 hour</label>
+          </div>
+          <div class="row_blk">
+            <input type="checkbox" name="" />
+            <label>1 hour 30 min</label>
+          </div>
+          <div class="row_blk">
+            <input type="checkbox" name="" />
+            <label>2 hour</label>
+          </div>
+          <div class="row_blk">
+            <input type="checkbox" name="" />
+            <label>2 hour 30 min</label>
+          </div>
+          <div class="load_more">Load more</div>
+        </div>
+      </div>
+      <div class="filter_cate_wpr">
+        <div class="head_cat">
+          <span class="title_cate">Price</span>
+          <span class="nav_icon"><i class="fa fa-angle-down"></i></span>
+        </div>
+        <div class="body_cat">
+          <div class="row_blk">
+            <input type="checkbox" name="" />
+            <label>1 hour</label>
+          </div>
+          <div class="row_blk">
+            <input type="checkbox" name="" />
+            <label>1 hour 30 min</label>
+          </div>
+          <div class="row_blk">
+            <input type="checkbox" name="" />
+            <label>2 hour</label>
+          </div>
+          <div class="row_blk">
+            <input type="checkbox" name="" />
+            <label>2 hour 30 min</label>
+          </div>
+          <div class="load_more">Load more</div>
+        </div>
+      </div>
+      <div class="filter_cate_wpr">
+        <div class="head_cat">
+          <span class="title_cate">Discount</span>
+          <span class="nav_icon"><i class="fa fa-angle-down"></i></span>
+        </div>
+        <div class="body_cat">
+          <div class="row_blk">
+            <input type="checkbox" name="" />
+            <label>1 hour</label>
+          </div>
+          <div class="row_blk">
+            <input type="checkbox" name="" />
+            <label>1 hour 30 min</label>
+          </div>
+          <div class="row_blk">
+            <input type="checkbox" name="" />
+            <label>2 hour</label>
+          </div>
+          <div class="row_blk">
+            <input type="checkbox" name="" />
+            <label>2 hour 30 min</label>
+          </div>
+          <div class="load_more">Load more</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="page-section bg_gray filter_section_padding">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-9">
+        <ng-container
+          *ngIf="
+            selectedPanelList?.length &&
+            selectedService.name !== 'Select Service'
+          "
+        >
+          <div class="services_card_wpr">
+            <div class="row">
+              <ng-container *ngFor="let panel of selectedPanelList">
+                <div class="col-md-12 padding-5">
+                  <div class="panel-service-border padding-5">
+                    <div class="head_blk" (click)="selectPanel(panel)">
+                      <span class="img-icon">
+                        <img src="{{ panel?.carPanel?.sizedPhoto }}" alt="" />
+                      </span>
+                      <span class="title_wpr">
+                        <h2 class="head_title">{{ panel?.carPanel?.name }}</h2>
+                      </span>
+                      <div
+                        class="col col-search-blk"
+                        [ngClass]="{ active: panel?.clicked }"
+                      ></div>
+                    </div>
+                    <ng-container *ngIf="panel?.clicked">
+                      <div>
+                        <ng-container
+                          *ngFor="let service of panel?.selectedPanelWorkList"
+                        >
+                          <div
+                            class="services_card_wpr p-5 pt-3 pb-3"
+                            *ngIf="
+                              getPackageWorksTypes(
+                                service?.typeOfWorkId,
+                                'length'
+                              )
+                            "
+                          >
+                            <div class="row">
+                              <div class="col-md-9">
+                                <div class="head_blk">
+                                  <span class="service-icon">
+                                    <img
+                                      alt="car work types"
+                                      [src]="
+                                        getPackageWorksTypes(
+                                          service?.typeOfWorkId,
+                                          'logoUrl'
+                                        )
+                                      "
+                                    />
+                                  </span>
+                                  <span class="title_wpr denting-title">
+                                    <h2 class="head_sub_title">
+                                      {{
+                                        getPackageWorksTypes(
+                                          service?.typeOfWorkId,
+                                          "name"
+                                        )
+                                      }}
+                                    </h2>
+                                    <label class="lable_title">{{
+                                      service?.desc
+                                    }}</label>
+                                  </span>
+                                </div>
+                                <div class="tag_wpr">
+                                  <div
+                                    class="tag_blk"
+                                    *ngIf="service?.turnAroundTime"
+                                  >
+                                    <span class="icon_img"
+                                      ><img
+                                        src="assets/images/icons/3.svg"
+                                        alt=""
+                                    /></span>
+                                    <span class="title"
+                                      >Take {{ service?.turnAroundTime }}</span
+                                    >
+                                  </div>
+                                  <div
+                                    class="tag_blk"
+                                    *ngIf="
+                                      service?.warrantyPeriod &&
+                                      service?.warrantyPeriod != '0'
+                                    "
+                                  >
+                                    <span class="icon_img"
+                                      ><img
+                                        src="assets/images/icons/2.svg"
+                                        alt=""
+                                    /></span>
+                                    <span class="title"
+                                      >{{
+                                        service?.warrantyPeriod
+                                      }}
+                                      Warranty</span
+                                    >
+                                  </div>
+                                  <div
+                                    class="tag_blk"
+                                    *ngIf="
+                                      service?.whenToGetItDone &&
+                                      service?.whenToGetItDone != '0'
+                                    "
+                                  >
+                                    <span class="icon_img"
+                                      ><img
+                                        src="assets/images/icons/1.svg"
+                                        alt=""
+                                    /></span>
+                                    <span class="title"
+                                      >Every
+                                      {{ service?.whenToGetItDone }}</span
+                                    >
+                                  </div>
+                                </div>
+                                <div
+                                  class="desc_li_wpr ps-2"
+                                  [ngClass]="{
+                                    'full-description':
+                                      service?.viewMore == true
+                                  }"
+                                  [innerHTML]="
+                                    getPackageWorksTypes(
+                                      service?.typeOfWorkId,
+                                      'description'
+                                    )
+                                  "
+                                ></div>
+                                <a
+                                  *ngIf="service?.viewMore !== true"
+                                  href="javascript:void(0)"
+                                  class="btn-viewall"
+                                  (click)="showWholeDesc(service)"
+                                  >View more</a
+                                >
+                                <a
+                                  *ngIf="service?.viewMore === true"
+                                  href="javascript:void(0)"
+                                  class="btn-viewall"
+                                  (click)="showLess(service)"
+                                  >Show less</a
+                                >
+                              </div>
+                              <div class="col-md-3">
+                                <div class="action_wpr">
+                                  <div class="amount_main_wpr hide">
+                                    <a
+                                      href="javascript:void(0)"
+                                      (click)="
+                                        utilService.showModelSelectModal = true;
+                                        utilService.showLoginModal = true
+                                      "
+                                      *ngIf="!headerService.showAuthWpr"
+                                      class="unlock-price-link"
+                                      ><i class="ti ti-lock mx-2 fw-bold"></i
+                                      >Unlock Best prices</a
+                                    >
+                                    <ng-container
+                                      *ngIf="headerService.showAuthWpr"
+                                    >
+                                      <div class="amount_wpr">
+                                        <span>
+                                          <span>
+                                            <span class="amount"
+                                              >₹{{
+                                                service?.slashedPrice
+                                                  ? service?.slashedPrice
+                                                  : service?.price
+                                              }}</span
+                                            >
+                                          </span>
+                                        </span>
+
+                                        <span class="amount_unit">+GST</span>
+                                      </div>
+                                      <div
+                                        class="amount_wpr"
+                                        *ngIf="service?.slashedPrice"
+                                      >
+                                        <span>
+                                          <span>
+                                            <span class="amount_offer"
+                                              >₹{{ service?.price }}</span
+                                            >
+                                          </span>
+                                        </span>
+                                        <span class="amount_offer_per">{{
+                                          calculatePercentage(service)
+                                        }}</span>
+                                      </div>
+                                    </ng-container>
+                                  </div>
+
+                                  <ng-container
+                                    *ngIf="headerService.showAuthWpr"
+                                  >
+                                    <div
+                                      *ngIf="
+                                        addOrRemoveServiceButton(
+                                          service,
+                                          'denting'
+                                        ) === 1
+                                      "
+                                      class="btn_wpr"
+                                      (click)="removeServiceFromCart(service)"
+                                    >
+                                      <div class="btn_action_1">
+                                        Remove Service
+                                      </div>
+                                    </div>
+                                    <div
+                                      *ngIf="
+                                        addOrRemoveServiceButton(
+                                          service,
+                                          'denting'
+                                        ) === 2
+                                      "
+                                      class="btn_wpr"
+                                      (click)="
+                                        replaceServiceFromCart(
+                                          service,
+                                          'denting'
+                                        )
+                                      "
+                                    >
+                                      <div class="btn_action">
+                                        Replace Service
+                                      </div>
+                                    </div>
+                                    <div
+                                      *ngIf="
+                                        addOrRemoveServiceButton(
+                                          service,
+                                          'denting'
+                                        ) === 3
+                                      "
+                                      class="btn_wpr"
+                                      (click)="
+                                        serviceAddToCart(
+                                          service,
+                                          getPackageWorksTypes(
+                                            service?.typeOfWorkId,
+                                            'typedata'
+                                          )
+                                        )
+                                      "
+                                    >
+                                      <div class="btn_action">Add Service</div>
+                                    </div>
+                                  </ng-container>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container
+          *ngIf="
+            !selectedPanelList?.length &&
+            !clicked &&
+            selectedService.name !== 'Select Service'
+          "
+        >
+          <ng-container
+            *ngFor="
+              let service of packageList
+                | paginate
+                  : {
+                      id: 'package_pagination',
+                      itemsPerPage: itemsPerpage,
+                      currentPage: page
+                    }
+            "
+          >
+            <!-- {{ selectedService | json }} -->
+            <div class="services_card_wpr">
+              <div class="row">
+                <div class="col-md-9">
+                  <div class="head_blk">
+                    <span class="icon">
+                      <img
+                        alt=""
+                        [src]="
+                          selectedService.logoUrl
+                            ? selectedService.logoUrl
+                            : 'assets/images/services/1.png'
+                        "
+                      />
+                    </span>
+                    <span class="title_wpr">
+                      <h2 class="head_title">{{ service?.name }}</h2>
+                      <label class="lable_title">{{ service?.desc }}</label>
+                    </span>
+                  </div>
+                  <div class="tag_wpr">
+                    <div
+                      class="tag_blk"
+                      *ngIf="
+                        service?.turnAroundTime &&
+                        service?.turnAroundTime !== '0'
+                      "
+                    >
+                      <span class="icon_img"
+                        ><img src="assets/images/icons/3.svg" alt=""
+                      /></span>
+                      <span class="title"
+                        >Take {{ service?.turnAroundTime }}</span
+                      >
+                    </div>
+                    <div
+                      class="tag_blk"
+                      *ngIf="
+                        service?.warrantyPeriod &&
+                        service?.warrantyPeriod !== '0'
+                      "
+                    >
+                      <span class="icon_img"
+                        ><img src="assets/images/icons/2.svg" alt=""
+                      /></span>
+                      <span class="title"
+                        >{{ service?.warrantyPeriod }} Warranty</span
+                      >
+                    </div>
+                    <div
+                      class="tag_blk"
+                      *ngIf="
+                        service?.whenToGetItDone &&
+                        service?.whenToGetItDone !== '0'
+                      "
+                    >
+                      <span class="icon_img"
+                        ><img src="assets/images/icons/1.svg" alt=""
+                      /></span>
+                      <span class="title"
+                        >Every {{ service?.whenToGetItDone }}</span
+                      >
+                    </div>
+                  </div>
+                  <div
+                    class="desc_li_wpr ps-2"
+                    [ngClass]="{
+                      'full-description': service?.viewMore == true
+                    }"
+                    [innerHTML]="service?.packageMetaData"
+                  ></div>
+                  <div *ngIf="service.subtype == 'checkbox'">
+                    <div *ngFor="let c of service.checkboxes">
+                      <input class="cursor_pointer" type="checkbox" [(ngModel)]="c.checked">
+                      <label class="c_label ml-3" for="">{{c.name}}</label>
+                    </div>
+                  </div>
+                  <a
+                    *ngIf="service?.viewMore !== true"
+                    href="javascript:void(0)"
+                    class="btn-viewall"
+                    (click)="showWholeDesc(service)"
+                    >View more</a
+                  >
+                  <a
+                    *ngIf="service?.viewMore === true"
+                    href="javascript:void(0)"
+                    class="btn-viewall"
+                    (click)="showLess(service)"
+                    >Show less</a
+                  >
+                </div>
+                <div class="col-md-3">
+                  <div class="action_wpr">
+                    <div class="amount_main_wpr hide">
+                      <a
+                        href="javascript:void(0)"
+                        (click)="
+                          utilService.showModelSelectModal = true;
+                          utilService.showLoginModal = true
+                        "
+                        *ngIf="!headerService.showAuthWpr"
+                        class="unlock-price-link"
+                        ><i class="ti ti-lock mx-2 fw-bold"></i>Unlock Best
+                        prices</a
+                      >
+                      <ng-container *ngIf="headerService.showAuthWpr">
+                        <ng-container
+                          *ngFor="let item of selectedPackagePriceList"
+                        >
+                          <ng-container *ngIf="item?.packageId == service?.id">
+                            <div class="amount_wpr">
+                              <span>
+                                <span>
+                                  <span class="amount"
+                                    >₹{{
+                                      item?.slashedPrice
+                                        ? item?.slashedPrice
+                                        : item?.price
+                                    }}</span
+                                  >
+                                </span>
+                              </span>
+
+                              <span class="amount_unit">+GST</span>
+                            </div>
+                            <div class="amount_wpr" *ngIf="item?.slashedPrice">
+                              <span>
+                                <span>
+                                  <span class="amount_offer"
+                                    >₹{{ item?.price }}</span
+                                  >
+                                </span>
+                              </span>
+                              <ng-container
+                                *ngFor="let item of selectedPackagePriceList"
+                              >
+                                <ng-container
+                                  *ngIf="item?.packageId == service?.id"
+                                >
+                                  <span class="amount_offer_per">{{
+                                    calculatePercentage(item)
+                                  }}</span>
+                                </ng-container>
+                              </ng-container>
+                            </div>
+                          </ng-container>
+                        </ng-container>
+                      </ng-container>
+                    </div>
+                    <ng-container *ngIf="headerService.showAuthWpr">
+                      <div
+                        class="btn_wpr"
+                        *ngIf="
+                          addOrRemoveServiceButton(service, 'normal') === 1
+                        "
+                        (click)="removeServiceFromCart(service)"
+                      >
+                        <div class="btn_action_1">Remove Service</div>
+                      </div>
+                      <div
+                        class="btn_wpr"
+                        *ngIf="
+                          addOrRemoveServiceButton(service, 'normal') === 2
+                        "
+                        (click)="replaceServiceFromCart(service, 'normal')"
+                      >
+                        <div class="btn_action_1">Replace Service</div>
+                      </div>
+                      <div
+                        class="btn_wpr"
+                        *ngIf="
+                          addOrRemoveServiceButton(service, 'normal') === 3
+                        "
+                        (click)="serviceAddToCart(service)"
+                      >
+                        <div class="btn_action">Add Service</div>
+                      </div>
+                    </ng-container>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-container>
+        </ng-container>
+
+        <ng-container
+          *ngIf="!selectedPanelList?.length && !filteredPackageList?.length"
+        >
+          <div class="no-data-container">
+            <span class="no-data-found">
+              {{ noDataFound }}
+            </span>
+          </div>
+        </ng-container>
+        <div
+          class="d-flex justify-content-center paginate_wpr"
+          *ngIf="filteredPackageList?.length"
+        >
+          <pagination-controls
+            id="package_pagination"
+            (pageChange)="page = $event"
+            [maxSize]="5"
+            class="float-right"
+          ></pagination-controls>
+        </div>
+      </div>
+      <div
+        class="col-md-3"
+        *ngIf="activeCartList?.id && activeCartList?.orderMeta?.package?.length"
+      >
+        <app-selected-packages
+          [activeCartList]="activeCartList"
+          [page]="'booking'"
+          [orderParams]="null"
+          (buttonClicked)="onButtonClicked($event)"
+        ></app-selected-packages>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer-nav></app-footer-nav>
+
+<div class="modal fade" id="modalAddOn" role="dialog">
+  <div class="modal-dialog modal-md" style="max-width: 720px">
+    <!-- Modal content-->
+
+    <div class="modal-content p-3">
+      <div class="modal-login-popup-wpr">
+        <div class="m-header mb-3">
+          <h1 class="mt-5 addon-head">Customize your selected package</h1>
+          <div class="close-btn" (click)="closeModal()">
+            <button type="button" class="close" data-dismiss="modal">
+              <i class="fa fa-close"></i>
+            </button>
+          </div>
+        </div>
+        <ng-container
+          *ngFor="let addon of filteredAddonList | assend : 'slashedPrice'"
+        >
+          <div
+            class="services_card_wpr p-t-35"
+            style="border: 1px solid #939393"
+            [ngClass]="{ active: addon.selected }"
+            (click)="addonSelect(addon)"
+          >
+            <div class="recomended" *ngIf="addon?.gradeList?.recommended">
+              <div></div>
+              <span class="mx-auto text-center self-center text-xs"
+                >RECOMMENDED</span
+              >
+              <div class="arrow-right"></div>
+            </div>
+            <div class="row">
+              <div class="col-md-9">
+                <div class="head_blk">
+                  <span class="icon">
+                    <img
+                      alt=""
+                      [src]="
+                        addon?.gradeList?.photoUrl
+                          ? addon.gradeList.photoUrl
+                          : 'assets/images/services/1.png'
+                      "
+                    />
+                  </span>
+                  <span class="title_wpr">
+                    <h2 class="head_title">
+                      {{ addon?.gradeList?.oilName }}
+                    </h2>
+                    <label class="lable_title">{{
+                      addon?.gradeList?.description
+                    }}</label>
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="action_wpr">
+                  <div class="amount_main_wpr hide">
+                    <div class="amount_wpr">
+                      <span>
+                        <span class="amount">₹{{ addon?.slashedPrice }}</span>
+                      </span>
+
+                      <span class="amount_unit">+GST</span>
+                    </div>
+                    <div class="amount_wpr">
+                      <span>
+                        <span class="amount_offer">₹{{ addon?.price }}</span>
+                      </span>
+                      <span class="amount_offer_per">{{
+                        calculatePercentage(addon)
+                      }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+        <div class="footer">
+          <div class="col-md-8 select-service-head">
+            <span class="select-service">
+              {{ selectedPackageList?.name }}
+            </span>
+            <span class="select-service-price"
+              >+
+              <ng-container *ngIf="selectedPackageList?.addons !== '{}'">{{
+                selectedPackageList.slashedPrice +
+                  selectedPackageList.addons?.slashedPrice
+              }}</ng-container
+              ><ng-container *ngIf="selectedPackageList?.addons === '{}'">{{
+                selectedPackageList?.slashedPrice
+                  ? selectedPackageList.slashedPrice
+                  : 0
+              }}</ng-container>
+              <span> + GST</span>
+            </span>
+          </div>
+          <div
+            class="services_card_wpr p-0"
+            (click)="addAddonToSelectedPackageAndUpdateCart()"
+          >
+            <div class="btn_action">Add to worklist</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="ModalCheckout" role="dialog">
+  <div class="modal-dialog modal-md" style="max-width: 560px">
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-login-popup-wpr">
+        <div class="m-header">
+          <div class="close-btn">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              (click)="modalCheckout.hide()"
+            >
+              <i class="fa fa-close"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="login-form-wpr plr-30">
+          <div class="input-group-wpr">
+            <div class="status_icon_wpr">
+              <svg
+                width="116"
+                height="116"
+                viewBox="0 0 116 116"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M95.8543 50.7494L94.0335 55.2536C93.4585 56.7869 93.4585 58.4161 94.0335 59.9494L95.8543 64.4536C96.9085 67.1369 96.046 70.2036 93.6501 71.9286L89.6251 74.7077C88.2835 75.6661 87.421 77.1036 87.0376 78.6369L86.1751 83.4286C85.6001 86.3036 83.2043 88.4119 80.3293 88.5077L75.4418 88.6994C73.8126 88.7952 72.2793 89.4661 71.1293 90.6161L67.7751 94.1619C65.7626 96.2702 62.6001 96.7494 60.1085 95.3119L55.8918 92.8202C54.4543 91.9577 52.8251 91.7661 51.196 92.1494L46.4043 93.2994C43.6251 93.9702 40.6543 92.6286 39.3126 90.0411L37.1085 85.6327C36.3418 84.1952 35.096 83.0452 33.5626 82.5661L28.9626 81.0327C26.1835 80.0744 24.4585 77.3911 24.746 74.5161L25.2251 69.6286C25.4168 67.9994 24.9376 66.3702 23.8835 65.1244L20.8168 61.2911C18.996 58.9911 18.996 55.8286 20.8168 53.5286L23.8835 49.6952C24.9376 48.4494 25.4168 46.8202 25.2251 45.1911L24.746 40.3036C24.4585 37.4286 26.1835 34.7452 28.9626 33.7869L33.5626 32.2536C35.096 31.7744 36.3418 30.6244 37.1085 29.1869L39.3126 24.7786C40.6543 22.1911 43.5293 20.8494 46.4043 21.5202L51.196 22.6702C52.7293 23.0536 54.4543 22.8619 55.8918 21.9994L60.1085 19.5077C62.6001 18.0702 65.7626 18.4536 67.7751 20.6577L71.1293 24.2036C72.2793 25.3536 73.8126 26.1202 75.4418 26.1202L80.3293 26.3119C83.2043 26.4077 85.696 28.5161 86.1751 31.3911L87.0376 36.1827C87.3251 37.8119 88.2835 39.2494 89.6251 40.1119L93.6501 42.8911C96.046 44.9994 97.0043 48.0661 95.8543 50.7494Z"
+                  fill="#00D566"
+                />
+                <g opacity="0.15">
+                  <path
+                    d="M42.0918 89.7536L39.8876 85.3452C39.121 83.9077 37.8751 82.7577 36.3418 82.2786L31.7418 80.7452C28.9626 79.7869 27.2376 77.1036 27.5251 74.2286L28.0043 69.3411C28.196 67.7119 27.7168 66.0827 26.6626 64.8369L23.596 61.0036C21.7751 58.7036 21.7751 55.5411 23.596 53.2411L26.6626 49.4077C27.7168 48.1619 28.196 46.5327 28.0043 44.9036L27.5251 40.0161C27.2376 37.1411 28.9626 34.4577 31.7418 33.4994L36.3418 31.9661C37.8751 31.4869 39.121 30.3369 39.8876 28.8994L42.0918 24.4911C42.8585 22.9577 44.2001 21.9036 45.6376 21.4244C43.0501 21.0411 40.4626 22.3827 39.3126 24.7786L37.1085 29.1869C36.3418 30.6244 35.096 31.7744 33.5626 32.2536L28.9626 33.7869C26.1835 34.7452 24.4585 37.4286 24.746 40.3036L25.2251 45.1911C25.4168 46.8202 24.9376 48.4494 23.8835 49.6952L20.8168 53.5286C18.996 55.8286 18.996 58.9911 20.8168 61.2911L23.8835 65.1244C24.9376 66.3702 25.4168 67.9994 25.2251 69.6286L24.746 74.5161C24.4585 77.3911 26.1835 80.0744 28.9626 81.0327L33.5626 82.5661C35.096 83.0452 36.3418 84.1952 37.1085 85.6327L39.3126 90.0411C40.6543 92.6286 43.5293 93.9702 46.4043 93.2994L46.9793 93.2036C44.871 92.8202 43.0501 91.6702 42.0918 89.7536Z"
+                    fill="black"
+                  />
+                  <path
+                    d="M58.5747 21.7119L62.7913 19.2202C63.1747 19.0286 63.558 18.8369 63.9413 18.7411C62.5997 18.5494 61.1622 18.8369 60.0122 19.5077L55.7955 21.9994C55.4122 22.1911 55.0288 22.3827 54.6455 22.4786C55.9872 22.6702 57.3288 22.4786 58.5747 21.7119Z"
+                    fill="black"
+                  />
+                  <path
+                    d="M78.1249 88.3161C77.6457 88.3161 77.1665 88.4119 76.7832 88.5077L80.2332 88.3161C80.7124 88.3161 81.0957 88.2202 81.5749 88.1244L78.1249 88.3161Z"
+                    fill="black"
+                  />
+                  <path
+                    d="M62.7922 94.9286L58.5755 92.4369C57.138 91.5744 55.5089 91.3827 53.8797 91.7661L53.3047 91.8619C54.1672 91.9577 54.9339 92.2452 55.7005 92.6286L59.9172 95.1202C61.5464 96.0786 63.3672 96.1744 65.0922 95.5994C64.3255 95.5994 63.5589 95.4077 62.7922 94.9286Z"
+                    fill="black"
+                  />
+                </g>
+                <path
+                  d="M42.667 51.5161L54.6462 65.2202L79.1795 45.4786"
+                  fill="#00D566"
+                />
+                <path
+                  d="M51.7711 72.3119C50.4294 72.3119 49.0877 71.7369 48.1294 70.6827L36.1502 56.9786C34.4252 54.9661 34.6169 51.9952 36.5336 50.1744C38.5461 48.4494 41.5169 48.6411 43.3377 50.5577L52.3461 60.8119L73.3336 43.9452C75.3461 42.3161 78.4127 42.6036 80.0419 44.7119C81.6711 46.8202 81.3836 49.7911 79.2752 51.4202L54.7419 71.2577C53.8794 71.9286 52.8252 72.3119 51.7711 72.3119Z"
+                  fill="white"
+                />
+              </svg>
+            </div>
+            <h2>Your Service is booked ! Our Team will get in touch with you shortly with the price estimate.</h2>
+            <label class="label_txt"
+              ><span class="services-list">{{
+                orderService.getServicesLists(order?.orderMeta?.package, ",")
+              }}</span></label
+            >
+          </div>
+
+          <div class="time_status_blk">
+            <div class="col_time_blk">
+              <i class="fa fa-calendar"></i>
+              {{ order?.orderMeta?.selectedDate | date : "mediumDate" }}
+            </div>
+            <div class="col_time_blk">
+              <i class="fa fa-clock"></i> {{ order?.orderMeta?.selectedSlot }}
+            </div>
+          </div>
+
+          <div class="billing_wpr">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="title">Booking Address</div>
+                <div class="address_blk">
+                  <div class="name">{{ order?.orderMeta?.address?.name }}</div>
+                  <div class="desc">
+                    {{ order?.orderMeta?.address?.address?.address1 }},{{
+                      order?.orderMeta?.address?.address?.landmark
+                    }}
+                    <br />
+                    {{ order?.orderMeta?.address?.address?.city }},
+                    {{ order?.orderMeta?.address?.address?.state }}<br />
+                    Mobile: +91-{{ order?.orderMeta?.address?.address?.number }}
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 hide">
+                <div class="title">Payment Details</div>
+                <div class="billing_amount_wpr">
+                  <div class="row_info">
+                    <span class="title_info">Sub Total</span>
+                    <span class="title_val"
+                      >₹{{ order?.orderMeta?.totalAmount }}</span
+                    >
+                  </div>
+                  <div class="row_info">
+                    <span class="title_info">GST (18%)</span>
+                    <span class="title_val"
+                      >₹{{ order?.orderMeta?.gstAmount }}</span
+                    >
+                  </div>
+                  <hr />
+                  <div class="row_info head">
+                    <span class="title_info">Total Price</span>
+                    <span class="title_val">₹{{ order?.paymentTotal }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

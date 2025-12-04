@@ -1,0 +1,72 @@
+<section class="page-section page_padding_section">
+    <span
+      class="arrow_slider"
+      style="position: absolute; left: 80px; width: 100px; bottom: 180px"
+    ></span>
+  
+    <div class="container">
+      <div class="row d-flex-center">
+        <div class="col-md-6">
+          <div class="about_text_wpr">
+            <h4>TESTIMONIALS</h4>
+            <h2 class="page-section-title">
+              Check our client <br />
+              lovely words.
+            </h2>
+          </div>
+  
+          <div
+            class="testimonial_carousel_wpr owl-carousel owl-theme carousel-nav"
+            id="testimonial-carousel"
+          >
+            <owl-carousel-o
+              [options]="testimonialOptions"
+              (dragging)="startDragging($event.dragging)"
+            >
+              <ng-template carouselSlide>
+                <div class="testimonial_item_blk">
+                  <div class="icon_wpr">
+                    <span class="icon"><i class="ti ti-quote-left"></i></span>
+                  </div>
+                  <div class="desc">
+                    I sold more than 5 cars in Nandi Toyota U Trust in a decade
+                    and I always refer my friends to them. No one else in
+                    Bangalore offers such a fast transaction giving the best price
+                    for your car.
+                  </div>
+                  <h4>ACR Swamy Managing Director</h4>
+                </div>
+              </ng-template>
+              <ng-template carouselSlide>
+                <div class="testimonial_item_blk">
+                  <div class="icon_wpr">
+                    <span class="icon"><i class="ti ti-quote-left"></i></span>
+                  </div>
+                  <div class="desc">
+                    Nandi Toyota U Trust offers fair prices for your car with a
+                    quick and hassle free selling experience. The staff are very
+                    friendly and experienced. I have only good memories associated
+                    with Nandi Toyota U Trust
+                  </div>
+                  <h4>Prashanth Madayana CoFounder-FEDO</h4>
+                </div>
+              </ng-template>
+            </owl-carousel-o>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="about_img_blk">
+            <div class="img_blk">
+              <span class="round_dote"></span>
+              <img src="assets/images/testimonial.png" />
+              <div class="img_txt_blk_1">
+                <div class="count">5.0</div>
+                <div class="count_label">avg rating</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
